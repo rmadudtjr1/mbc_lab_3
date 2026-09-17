@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antigravity 설정 방법</title>
+<style>
+:root{
+  --paper:#fafbff; --surface:#fff; --ink:#1f1e1b; --ink-soft:#6d6a62;
+  --line:#e0e4ec; --code-bg:#f1f3f8;
+  --g-blue:#4285F4; --g-blue-soft:#e8f0fe;
+  --g-red:#EA4335; --g-red-soft:#fce8e6;
+  --g-yellow:#FBBC05; --g-yellow-soft:#fef7e0;
+  --g-green:#34A853; --g-green-soft:#e6f4ea;
+  --accent:var(--g-blue); --accent-soft:var(--g-blue-soft);
+  --green:var(--g-green); --green-soft:var(--g-green-soft);
+}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Noto Sans KR",system-ui,sans-serif; font-size:15.5px; line-height:1.8;
+}
+.content{max-width:860px; margin:0 auto; padding:48px 24px 80px}
+h1{font-size:28px; line-height:1.35; margin:0 0 10px}
+h1::after{
+  content:""; display:block; height:5px; width:220px; margin-top:12px; border-radius:3px;
+  background:linear-gradient(90deg, var(--g-blue) 0 25%, var(--g-red) 25% 50%, var(--g-yellow) 50% 75%, var(--g-green) 75% 100%);
+}
+.sub{color:var(--ink-soft); margin:0 0 36px}
+h2{font-size:20px; margin:44px 0 10px; padding-bottom:8px; border-bottom:2px solid var(--g-blue)}
+h3{font-size:16px; margin:26px 0 6px; color:var(--g-blue)}
+.eyebrow{font-family:monospace; font-size:11px; letter-spacing:.14em; color:var(--accent); font-weight:600}
+code{background:var(--code-bg); border:1px solid var(--line); border-radius:4px; padding:1px 6px; font-size:.88em; font-family:"IBM Plex Mono",Consolas,monospace}
+figure.shot{margin:14px 0; padding:0; border:1px solid var(--line); border-radius:8px; background:var(--surface); overflow:hidden}
+figure.shot img{display:block; width:100%; height:auto}
+figure.shot figcaption{font-size:12.5px; color:var(--ink-soft); padding:8px 14px; border-top:1px solid var(--line); background:var(--code-bg)}
+table{border-collapse:collapse; width:100%; font-size:14px; background:var(--surface); margin:10px 0}
+th,td{border:1px solid var(--line); padding:8px 12px; text-align:left; vertical-align:top}
+th{background:var(--g-blue-soft); font-size:13px; color:#174ea6}
+td:first-child{white-space:nowrap; font-weight:600}
+.note{border-left:4px solid var(--g-yellow); background:var(--g-yellow-soft); border-radius:6px; padding:12px 16px; margin:14px 0}
+.ok{border-left:4px solid var(--g-green); background:var(--g-green-soft); border-radius:6px; padding:12px 16px; margin:14px 0}
+</style>
+</head>
+<body>
+<div class="content">
+  <div class="eyebrow">SETTINGS GUIDE</div>
+  <h1>Antigravity 설정 방법</h1>
+  <p class="sub">좌측 하단 톱니바퀴(<code>Settings</code>)를 누르면 설정 화면이 열립니다.
+  왼쪽 메뉴 순서대로 각 화면에서 무엇을 설정하는지 살펴봅니다.</p>
+
+  <h2>1. General — 에이전트 실행·권한</h2>
+  <p>에이전트가 어디까지 스스로 실행할 수 있는지 정하는 가장 중요한 화면입니다.</p>
+  <figure class="shot"><img src="menu_img/general.png" alt="General 설정 화면">
+    <figcaption>Settings → General</figcaption></figure>
+
+  <h3>Execution — 메시지 전달</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Queued Messages</td><td>에이전트가 작업 중일 때 추가로 입력한 메시지를 언제 전달할지 정합니다.
+      <code>Queue</code>는 지금 하던 작업이 끝난 뒤에 순서대로 전달하고,
+      <code>Send Immediately</code>는 작업 도중이라도 즉시 끼어들어 전달합니다.
+      작업 흐름이 끊기지 않게 하려면 <code>Queue</code>, 급하게 방향을 바꿔야 할 일이 많으면 <code>Send Immediately</code>가 편합니다.
+      키보드 단축키로도 전환할 수 있습니다.</td></tr>
+  </table>
+
+  <h3>Agent Settings — 에이전트 권한</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Security Preset</td><td>에이전트가 할 수 있는 행동 범위를 묶음으로 정하는 프리셋입니다.
+      <strong>현재 사용하는 라이선스(Gemini Enterprise Plus)에서는 <code>Custom</code>으로 고정</strong>되어 있으며,
+      아래 개별 항목(파일 접근·명령 실행 등)을 통해 세부 정책을 조정합니다.</td></tr>
+    <tr><td>Outside of folders file access policy</td><td>에이전트가 <strong>작업 폴더 바깥</strong>의 파일을 읽거나 쓰려고 할 때의 동작입니다.
+      작업 폴더 안의 파일은 이 정책과 무관하게 접근할 수 있습니다. 선택지는 세 가지입니다.
+      <br>· <code>Always Ask</code> — 바깥 파일에 접근할 때마다 사용자에게 승인을 요청합니다. 기본값이자 권장값입니다.
+      <br>· <code>Allow</code> — 승인 없이 바깥 파일에 자유롭게 접근합니다. 편리하지만 의도하지 않은 파일을 읽거나 수정할 수 있어 주의가 필요합니다.
+      <br>· <code>Deny</code> — 바깥 파일 접근을 아예 차단합니다. 에이전트는 작업 폴더 안에서만 동작합니다.</td></tr>
+    <tr><td>Terminal Command Auto Execution</td><td>에이전트가 터미널 명령을 실행하기 전에 승인을 받을지 정합니다. 선택지는 세 가지입니다.
+      <br>· <code>Require Review</code> — 모든 터미널 명령을 실행 전에 사용자가 검토·승인합니다. 가장 안전하지만 승인이 잦아집니다.
+      <br>· <code>Proceed in Sandbox</code> — 격리된 샌드박스 안에서는 승인 없이 자동 실행하고, 샌드박스 밖으로 나가야 하는 명령만 승인을 요청합니다. 안전과 편의의 균형이 잡힌 권장값입니다.
+      <br>· <code>Always Proceed</code> — 모든 명령을 승인 없이 즉시 실행합니다. 흐름은 가장 빠르지만 위험한 명령도 그대로 실행되므로 신중히 사용하세요.</td></tr>
+    <tr><td>Enable Sandbox Mode (Preview)</td><td>에이전트의 도구 실행을 안전하게 격리된 로컬 샌드박스로 제한합니다.
+      켜두면 명령이 실수로 시스템의 다른 영역을 건드리는 것을 막아줍니다. 위의 <code>Proceed in Sandbox</code>와 함께 쓰는 것이 전제입니다.</td></tr>
+    <tr><td>Tool Permissions</td><td><code>Open</code>을 누르면 파일·터미널·MCP 도구별로 권한을 세부 조정하는 화면이 열립니다.
+      특정 도구만 허용/차단하고 싶을 때 사용합니다.</td></tr>
+  </table>
+
+  <h3>Agent Behavior — 산출물 검토</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Artifact Review Policy</td><td>에이전트가 만든 문서(아티팩트)를 진행 전에 사용자에게 검토받을지 정합니다. 선택지는 두 가지입니다.
+      <br>· <code>Always Proceed</code> — 검토 없이 계속 진행합니다. 교육/실습에서는 흐름이 끊기지 않아 편합니다.
+      <br>· <code>Always Ask</code> — 아티팩트가 만들어질 때마다 사용자에게 검토를 요청하고, 확인 후에 다음 단계로 진행합니다. 산출물을 하나하나 점검하며 작업할 때 적합합니다.</td></tr>
+  </table>
+
+  <h3>Network Permissions — 네트워크 접근</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Network Access Rules</td><td>에이전트가 <strong>읽기(웹 조회)용으로 접근할 수 있는 URL의 허용/차단 목록</strong>을 관리합니다.
+      사내망 주소만 허용하거나 특정 외부 사이트를 차단하는 식으로 웹 접근 범위를 통제할 수 있습니다.</td></tr>
+  </table>
+
+  <h3>Terminal &amp; Tooling Permissions — 샌드박스 밖 명령</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Commands Outside Sandbox</td><td>샌드박스 <strong>바깥</strong>에서 승인 없이 실행을 허용할 명령 목록을 관리합니다.
+      자주 쓰는 안전한 명령(예: <code>git status</code> 같은 조회성 명령)을 등록해 두면 매번 승인하는 번거로움이 줄어듭니다.</td></tr>
+  </table>
+
+  <h3>Browser — 브라우저 서브에이전트</h3>
+  <p>대화창에 <code>/browser</code>를 입력하면 호출되는 브라우저 서브에이전트 관련 설정입니다.
+  사용하려면 <strong>Google Chrome이 설치</strong>되어 있어야 합니다.</p>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Browser Javascript Execution Policy</td><td>에이전트가 복잡한 브라우저 자동화를 위해 <strong>임의의 JavaScript를 실행</strong>할 수 있는지 정합니다. 선택지는 세 가지입니다.
+      <br>· <code>Request Review</code> — 실행 전에 코드를 사용자에게 보여주고 승인받습니다. 보안상 권장값입니다.
+      <br>· <code>Disabled</code> — JavaScript 실행을 아예 차단합니다. 클릭·입력 같은 기본 조작만 가능합니다.
+      <br>· <code>Always Proceed</code> — 승인 없이 JavaScript를 바로 실행합니다. 자동화는 빨라지지만 페이지에서 어떤 코드가 실행되는지 확인할 수 없으므로 신뢰할 수 있는 사이트에서만 사용하세요.</td></tr>
+    <tr><td>Browser Actuation Rules</td><td>브라우저 서브에이전트가 <strong>직접 조작(클릭·입력 등)할 수 있는 URL</strong>의 허용/차단 목록입니다.
+      위의 Network Access Rules가 "읽기" 범위라면, 이 항목은 "조작" 범위를 통제합니다.</td></tr>
+  </table>
+  <div class="note">사내 정책으로 <code>/browser</code>가 차단된 환경에서는 이 섹션의 설정과 무관하게 동작하지 않을 수 있습니다.</div>
+
+  <h2>2. Application — 앱 동작·버전</h2>
+  <figure class="shot"><img src="menu_img/application.png" alt="Application 설정 화면">
+    <figcaption>Settings → Application</figcaption></figure>
+  <h3>General — 앱 동작</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Prevent Sleep</td><td>Antigravity가 실행 중인 동안 컴퓨터가 절전 모드로 들어가지 않게 막습니다.
+      에이전트에게 긴 작업을 맡겨둔 상태에서 PC가 절전으로 들어가면 작업이 중단되므로,
+      <strong>장시간 작업이나 예약 실행을 쓴다면 켜두는 것을 권장</strong>합니다.
+      다만 노트북을 배터리로 쓸 때는 배터리 소모가 커지는 점을 감안하세요.</td></tr>
+    <tr><td>Keep In Menu Bar</td><td>모든 창을 닫아도 앱을 완전히 종료하지 않고 메뉴 바(Windows는 시스템 트레이)에서 백그라운드로 유지합니다.
+      켜두면 창을 닫아도 예약 작업이 계속 동작하고, 트레이 아이콘으로 빠르게 다시 열 수 있습니다.
+      <strong>예약 실행(스케줄러)을 쓴다면 Prevent Sleep과 함께 켜두세요</strong> — 창을 닫는 순간 예약이 멈추는 실수를 막아줍니다.</td></tr>
+  </table>
+
+  <h3>Notifications — 알림</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Notification Settings</td><td>에이전트 작업 완료·승인 요청 등의 알림을 어떻게 받을지에 대한 설정입니다.
+      다만 알림 방식 자체는 Antigravity 안이 아니라 <strong>운영체제의 알림 설정</strong>에서 관리합니다.
+      <code>Open System Preferences</code> 버튼을 누르면 OS 알림 설정 화면(Windows: 설정 → 시스템 → 알림)이 열리고,
+      거기서 Antigravity 앱의 알림 허용 여부·배너 표시·소리 등을 조정할 수 있습니다.
+      긴 작업을 맡겨두고 다른 일을 할 때 완료 알림을 받으려면 OS에서 Antigravity 알림이 허용되어 있어야 합니다.</td></tr>
+  </table>
+
+  <h3>Version — 버전</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>App version</td><td>현재 설치된 Antigravity 버전을 표시합니다 (예: 2.13.0).
+      문제가 생겨 문의할 때 이 버전을 함께 알려주면 원인 파악이 빨라지고,
+      가이드 문서와 화면이 다를 때 버전 차이인지 확인하는 기준이 됩니다.</td></tr>
+    <tr><td>Advanced Settings</td><td>화면 하단의 <code>Advanced Settings</code>를 누르면 고급 설정 화면으로 이동합니다.
+      일반적인 사용에서는 건드릴 일이 거의 없습니다.</td></tr>
+  </table>
+
+  <h2>3. Appearance — 테마·화면</h2>
+  <figure class="shot"><img src="menu_img/appearance.png" alt="Appearance 설정 화면">
+    <figcaption>Settings → Appearance</figcaption></figure>
+  <h3>Chat Settings — 대화창</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Verbose Agent Chat</td><td>에이전트가 답을 만들기까지의 <strong>중간 사고 과정(생각 단계)을 대화창에 표시하고 보존</strong>합니다.
+      켜두면 에이전트가 지금 무엇을 왜 하고 있는지 따라가기 좋아 교육·디버깅에 유용하고,
+      끄면 최종 결과 위주의 깔끔한 대화창이 됩니다.</td></tr>
+    <tr><td>Conversation Width</td><td>대화 패널의 최대 폭을 정합니다. <code>Narrow</code>(좁게) / <code>Default</code>(기본) / <code>Wide</code>(넓게) 세 가지입니다.
+      와이드 모니터에서 코드나 표가 잘려 보이면 <code>Wide</code>로, 줄이 너무 길어 읽기 힘들면 <code>Narrow</code>로 조정하세요.</td></tr>
+  </table>
+
+  <h3>Appearance — 테마</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Theme</td><td>앱 전체의 밝기 테마를 정합니다. 세 개의 아이콘은 순서대로
+      <strong>시스템 연동</strong>(OS 설정을 따라감) · <strong>라이트</strong> · <strong>다크</strong>입니다.
+      시스템 연동을 선택하면 OS가 다크 모드로 바뀔 때 앱도 함께 바뀝니다.</td></tr>
+  </table>
+
+  <h3>Light Theme — 색상 상세</h3>
+  <p>선택한 테마(라이트/다크)의 색상을 세부 조정합니다. 화면 아래의 코드 예시로 결과를 바로 미리 볼 수 있습니다.</p>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Preset</td><td>색상 조합 프리셋입니다. 기본값은 <code>Default Light</code>이며,
+      아래 색상을 직접 바꾼 뒤 옆의 되돌리기 버튼으로 프리셋 기본값에 복원할 수 있습니다.</td></tr>
+    <tr><td>Background</td><td>화면 배경색입니다 (기본 <code>#EEEEEE</code>). 색상 칩을 눌러 원하는 색으로 바꿀 수 있습니다.</td></tr>
+    <tr><td>Foreground</td><td>글자 색입니다 (기본 <code>#101010</code>). 배경과의 대비가 충분해야 읽기 편합니다.</td></tr>
+    <tr><td>Accent</td><td>버튼·링크·선택 표시 등에 쓰이는 강조색입니다 (기본 <code>#007ACC</code>).</td></tr>
+  </table>
+
+  <h2>4. Models — 플랜·쿼터 확인</h2>
+  <figure class="shot"><img src="menu_img/models.png" alt="Models 설정 화면">
+    <figcaption>Settings → Models</figcaption></figure>
+  <h3>Plan — 플랜 확인</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Your Plan</td><td>현재 계정에 적용된 라이선스를 표시합니다.
+      <strong>Gemini Enterprise Plus · Managed by your organization</strong>으로 표시되면 사내 라이선스가 정상 적용된 상태입니다.
+      "Managed by your organization"은 플랜을 개인이 아닌 <strong>조직(회사)이 관리</strong>한다는 뜻으로,
+      개인이 결제하거나 플랜을 바꿀 필요가 없습니다.</td></tr>
+  </table>
+  <div class="ok">개인 Gmail 계정으로 잘못 로그인하면 여기에 다른 플랜이 표시됩니다.
+  로그인 직후 이 화면에서 플랜을 확인하는 것이 가장 확실한 점검 방법입니다.</div>
+
+  <h3>Model Quota — 모델 사용량</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Model Quota</td><td>사용 가능한 모델 쿼터(사용량 한도)를 확인하는 곳입니다.
+      쿼터는 플랜에 따라 주기적으로 갱신됩니다.
+      Antigravity Business(사내 환경)에서는 소비 방식이 조직 계약에 따르므로,
+      상세 내용은 화면의 <code>documentation</code> 링크로 안내됩니다.
+      제목 옆 새로고침 버튼으로 최신 상태를 다시 불러올 수 있습니다.</td></tr>
+  </table>
+
+  <h2>5. Customizations — 스킬·규칙·MCP</h2>
+  <figure class="shot"><img src="menu_img/customizations.png" alt="Customizations 설정 화면">
+    <figcaption>Settings → Customizations</figcaption></figure>
+  <h3>Token Usage — 토큰 예산</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Token Usage</td><td>스킬·규칙·MCP 같은 커스터마이징이 차지하는 <strong>토큰 예산 현황</strong>을 보여줍니다.
+      커스터마이징은 매 대화에 함께 실리는 정보라서 총량에 한도가 있고,
+      예산을 초과하면 큰 커스터마이징부터 자동으로 잘려 나갑니다(truncate).
+      막대 그래프에서 남은 예산 비율을 확인하고, <code>Show breakdowns</code>로 항목별 사용량을 펼쳐볼 수 있습니다.
+      스킬을 많이 설치했는데 일부가 동작하지 않으면 여기서 예산 초과 여부부터 확인하세요.</td></tr>
+  </table>
+
+  <h3>Skills — 스킬 목록</h3>
+  <p>설치된 스킬(슬래시 명령어·자동 동작) 목록입니다. 각 스킬 카드에는 이름·적용 범위(<code>Global</code> 배지 = 모든 프로젝트 공통)·설명이 표시되고,
+  카드 우측 아이콘으로 스킬 정의 내용을 열어볼 수 있습니다. 기본 설치된 스킬들은 성격별로 나누면 다음과 같습니다.</p>
+  <table>
+    <tr><th>분류</th><th>스킬과 역할</th></tr>
+    <tr><td>안전장치</td><td><code>accidental-data-loss-prevention</code> — DROP TABLE, TRUNCATE, 스토리지 삭제 같은
+      <strong>되돌릴 수 없는 데이터 삭제 명령을 실행하기 전에 반드시 사용자 동의를 받도록</strong> 강제하는 스킬입니다.
+      실수로 운영 데이터를 지우는 사고를 막아줍니다.</td></tr>
+    <tr><td>Antigravity 안내</td><td><code>antigravity-guide</code> — Antigravity 사용법·설정·슬래시 명령어 전반을 안내하는 스킬. 막힐 때 <code>/antigravity-guide</code>로 호출합니다.
+      <br><code>agy-customizations</code> — 커스터마이징 시스템(스킬·규칙·플러그인·훅·MCP)의 동작 원리와 제작 방법을 안내합니다.</td></tr>
+    <tr><td>BigQuery</td><td><code>bigquery-sql</code>(쿼리 최적화·비용 절감), <code>bigquery-ai-ml</code>(시계열 예측·이상 탐지 등 BigQuery ML),
+      <code>bigquery-bigframes</code>(pandas 스타일 Python API), <code>bigquery-graph</code>(GQL 그래프 쿼리),
+      <code>bigquery-data-transfer-service</code>(DTS 수집 파이프라인 조회)</td></tr>
+    <tr><td>데이터 파이프라인</td><td><code>gcp-data-pipelines</code>(파이프라인 작업의 진입점 — 상황에 맞는 스킬로 안내),
+      <code>dataform-bigquery</code>·<code>dbt-bigquery</code>(ELT 파이프라인), <code>gcp-dataflow</code>(Apache Beam),
+      <code>gcp-spark</code>(Dataproc Spark), <code>data-autocleaning</code>(데이터 정제),
+      <code>gcp-pipeline-orchestration</code>·<code>gcp-composer-troubleshooting</code>·<code>gcp-managed-airflow-migrations</code>(Composer/Airflow 오케스트레이션),
+      <code>gcp-pipeline-resource-provisioning</code>(deployment.yaml 기반 리소스 프로비저닝)</td></tr>
+    <tr><td>데이터 탐색·연동</td><td><code>discovering-gcp-data-assets</code>(GCP 데이터 자산 검색·스키마 조회),
+      <code>federate-lakehouse-catalog</code>(Databricks Unity·AWS Glue 등 외부 카탈로그 연동)</td></tr>
+    <tr><td>분석·시각화</td><td><code>ml-best-practices</code>(ML·데이터 분석 작업 시 필수 적용 규칙),
+      <code>notebook-guidance</code>(Jupyter 노트북 작성 규칙), <code>building-data-apps</code>(데이터 대시보드·앱 구축),
+      <code>generative_ui</code>(대화창 안에 인터랙티브 HTML 위젯 렌더링)</td></tr>
+    <tr><td>개발 환경·운영</td><td><code>gcloud-auth-verification</code>(GCP 인증 오류 해결), <code>managing-python-dependencies</code>(Python 가상환경·패키지 관리),
+      <code>enforcing-resource-attribution</code>(bq/gcloud 명령의 리소스 라벨링 강제), <code>permissioned-github</code>(GitHub 작업 권한 처리),
+      <code>gcs-security-assessment</code>(GCS 보안 점검), <code>migrate-workflows</code>·<code>skill-repair</code>(스킬 유지보수)</td></tr>
+  </table>
+
+  <h3>Installed MCP Servers — 설치된 MCP 서버</h3>
+  <p>연결된 MCP 서버 목록과 상태가 표시됩니다. 기본으로 <code>context</code> · <code>notebooks</code> · <code>visualization</code>
+  세 서버가 설치되어 있으며, 사내 MCP 서버를 추가하면 여기에 함께 나타납니다 (연결 방법은 본문 실습 6 참고).</p>
+  <div class="note"><b><code>Socket connection error … connection closed</code> 에러가 보인다면</b>
+  기본 제공 서버(context/notebooks/visualization)가 아직 시작되지 않았거나 백그라운드 프로세스가 내려간 상태입니다.
+  해당 서버를 쓰는 기능을 사용하지 않는다면 무시해도 되고, 필요하면 앱을 재시작하면 다시 연결됩니다.
+  <strong>사내 MCP 서버 연결과는 무관한 에러</strong>이니 실습 진행에는 지장이 없습니다.</div>
+
+  <h3>Plugins — 플러그인</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Build With Google Plugins</td><td>Google이 제공하는 플러그인 카탈로그를 둘러보고 활성화할 수 있습니다.
+      플러그인은 스킬·MCP 등을 묶어 배포하는 확장 단위로, 필요한 것만 골라 켜면 됩니다.
+      (플러그인을 켤수록 위 Token Usage 예산을 더 쓰게 되는 점을 감안하세요.)</td></tr>
+  </table>
+
+  <h2>6. Browser</h2>
+  <figure class="shot"><img src="menu_img/browser.png" alt="Browser 설정 화면">
+    <figcaption>Settings → Browser</figcaption></figure>
+  <p>브라우저 설정은 <strong>General 설정의 Browser 섹션으로 이동</strong>되었습니다.
+  이 메뉴를 열면 "Browser settings have moved" 안내와 함께 <code>Go to General settings</code> 링크만 표시됩니다.
+  <code>/browser</code> 서브에이전트 관련 설정(JavaScript 실행 정책, 조작 허용 URL 등)은
+  위의 <strong>1. General → Browser</strong> 부분을 참고하세요.</p>
+
+  <h2>7. 프로젝트 설정 (Projects)</h2>
+  <p>왼쪽 메뉴의 <code>Projects</code> 아래에서 프로젝트를 선택하면 프로젝트별 설정이 열립니다.</p>
+  <figure class="shot"><img src="menu_img/project settings.png" alt="프로젝트 설정 화면">
+    <figcaption>Settings → Projects → 프로젝트 선택</figcaption></figure>
+  <h3>Folders — 작업 폴더</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Folders</td><td>이 프로젝트에 연결된 작업 폴더 목록입니다. 에이전트는 여기 등록된 폴더 안에서 자유롭게 파일을 읽고 쓸 수 있습니다.
+      <code>+ Add Folder</code>로 폴더를 추가하고, 각 폴더 우측의 <code>×</code>로 연결을 해제합니다.
+      관련 자료가 여러 폴더에 흩어져 있다면 모두 추가해 두는 것이 좋습니다 —
+      등록되지 않은 폴더는 "작업 폴더 바깥"으로 취급되어 접근 시 승인이 필요해집니다.</td></tr>
+  </table>
+
+  <h3>Agent Settings — 프로젝트별 권한 재정의</h3>
+  <p>General에서 본 것과 같은 항목들을 <strong>이 프로젝트에 한해서만 다르게</strong> 정할 수 있습니다.
+  값이 <code>Inherit General</code>이면 General 설정을 그대로 따른다는 뜻입니다.</p>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Security Preset</td><td>General과 마찬가지로 현재 라이선스에서는 <code>Custom</code>으로 고정되어 있습니다.</td></tr>
+    <tr><td>Outside of folders file access policy</td><td>작업 폴더 밖 파일 접근 정책을 프로젝트 단위로 재정의합니다.
+      기본값 <code>Inherit General</code>이면 General의 값(예: Always Ask)을 그대로 따르고,
+      민감한 자료가 있는 프로젝트만 <code>Deny</code>로 잠그는 식으로 개별 지정할 수 있습니다.</td></tr>
+    <tr><td>Terminal Command Auto Execution</td><td>터미널 명령 승인 정책의 프로젝트 단위 재정의입니다. 마찬가지로 <code>Inherit General</code>이 기본입니다.</td></tr>
+    <tr><td>Enable Sandbox Mode (Preview)</td><td>이 프로젝트에서의 샌드박스 사용 여부입니다. <code>Enabled</code>로 표시되면 샌드박스가 켜진 상태입니다.</td></tr>
+    <tr><td>Artifact Review Policy</td><td>아티팩트 검토 정책도 프로젝트 단위로 재정의할 수 있습니다. <code>Inherit General</code>이 기본입니다.</td></tr>
+  </table>
+
+  <h3>Local Permissions — 프로젝트 로컬 권한</h3>
+  <p>이 프로젝트에서 작업할 때는 여기 설정한 규칙과 전역(global) 설정이 <strong>함께 적용</strong>됩니다.
+  각 항목의 <code>Open</code>을 누르면 세부 규칙 관리 화면이 열립니다.</p>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>File Access Rules</td><td>파일 <strong>읽기/쓰기를 허용·차단할 경로</strong> 규칙입니다.
+      특정 폴더만 읽기 전용으로 열어주거나, 민감한 경로를 차단하는 식으로 씁니다.</td></tr>
+    <tr><td>Network Access Rules</td><td>이 프로젝트에서 <strong>읽기(웹 조회)용으로 접근할 수 있는 URL</strong>의 허용/차단 목록입니다.
+      General의 같은 항목을 프로젝트 범위로 좁힌 것입니다.</td></tr>
+    <tr><td>Terminal Commands</td><td>이 프로젝트에서 <strong>허용할 터미널 명령</strong> 목록입니다.
+      등록된 명령은 승인 절차를 거치지 않고 실행할 수 있습니다.</td></tr>
+    <tr><td>Commands Outside Sandbox</td><td><strong>샌드박스 밖에서</strong> 승인 없이 실행을 허용할 명령 목록입니다.
+      Terminal Commands가 일반 허용 목록이라면, 이 항목은 샌드박스를 벗어나는 명령에 대한 별도 허용 목록입니다.</td></tr>
+    <tr><td>MCP Tools</td><td>Model Context Protocol(MCP)로 연결된 <strong>외부 도구</strong>의 사용 권한을 관리합니다.
+      사내 MCP 서버의 도구별 허용/차단을 프로젝트 단위로 정할 수 있습니다.</td></tr>
+  </table>
+
+  <h3>Customizations — 프로젝트에 적용된 스킬</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Token Usage</td><td>5번 Customizations 화면과 같은 내용을 <strong>이 프로젝트 기준</strong>으로 보여줍니다.
+      스킬·규칙·MCP가 쓰는 토큰 예산 잔량(예: 75.2% 사용 가능)을 확인하고,
+      예산 초과 시 큰 커스터마이징부터 자동으로 잘린다는 점도 동일합니다.</td></tr>
+    <tr><td>Skills 목록</td><td>이 프로젝트에서 사용할 수 있는 스킬들이 나열됩니다. <code>Global</code> 배지가 붙은 스킬은 모든 프로젝트 공통입니다.
+      예: <code>antigravity-guide</code>(사용법 안내), <code>accidental-data-loss-prevention</code>(위험한 삭제 명령 실행 전 반드시 사용자 동의를 받게 하는 안전장치),
+      BigQuery·Dataform·Spark 등 GCP 데이터 작업용 스킬 다수.</td></tr>
+  </table>
+
+  <h3>Danger Zone — 프로젝트 삭제</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Delete Project</td><td>프로젝트를 <strong>영구 삭제</strong>합니다. 프로젝트에 속한 활성 대화들도 함께 삭제되며
+      (버튼 아래에 삭제될 대화 수가 표시됩니다), <strong>되돌릴 수 없습니다</strong>.
+      대화 기록이 필요하면 삭제 전에 내용을 따로 보관하세요.</td></tr>
+  </table>
+
+  <h2>8. 사이드바 기타 메뉴</h2>
+  <p>설정 화면 왼쪽 메뉴에는 위 설정 화면들 외에 다음 항목들이 있습니다.</p>
+
+  <h3>Projects 목록</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>프로젝트 이름들</td><td><code>Projects</code> 아래에는 내가 만든 프로젝트들이 나열됩니다.
+      이름을 클릭하면 해당 프로젝트의 설정 화면(7번 참고)이 열립니다.</td></tr>
+    <tr><td>Show all</td><td>프로젝트가 많아 일부만 표시될 때, 전체 프로젝트 목록을 펼쳐 보여줍니다.</td></tr>
+    <tr><td>Not in Project → Conversations</td><td>어느 프로젝트에도 속하지 않은 <strong>일반 대화</strong>에 적용되는 설정입니다.
+      프로젝트 없이 바로 시작한 대화는 이 항목의 설정(폴더·권한)을 따릅니다.</td></tr>
+  </table>
+
+  <h3>하단 메뉴</h3>
+  <table>
+    <tr><th>항목</th><th>설명</th></tr>
+    <tr><td>Shortcuts</td><td>키보드 단축키 목록을 확인하고 변경하는 화면입니다.
+      메시지 전송, 대화 전환, Queue/Send Immediately 전환 같은 자주 쓰는 동작의 단축키를 여기서 확인할 수 있습니다.</td></tr>
+    <tr><td>Provide Feedback</td><td>Antigravity 개발팀(Google)에 버그 신고나 개선 의견을 보내는 창구입니다.
+      <strong>사내 환경 문제(로그인·MCP·권한)는 여기가 아니라 조별 멘토나 IT 담당 부서에 문의</strong>하세요 —
+      이 버튼은 앱 자체의 문제를 Google에 전달하는 용도입니다.</td></tr>
+    <tr><td>계정 영역</td><td>맨 아래에는 현재 로그인된 계정의 이름과 이메일이 표시됩니다.
+      <strong>회사 이메일(@mz.co.kr 등 사내 도메인)로 표시되는지 확인</strong>하세요 —
+      개인 Gmail이 보인다면 잘못된 계정으로 로그인된 상태이니 로그아웃 후 사내 SSO 절차로 다시 로그인해야 합니다.</td></tr>
+  </table>
+
+  <h2>막힐 때</h2>
+  <div class="note">Antigravity 대화창에 <code>/antigravity-guide</code>를 입력해 물어보거나, 조별 멘토를 부르세요.</div>
+</div>
+</body>
+</html>

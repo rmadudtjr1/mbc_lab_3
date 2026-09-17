@@ -1,0 +1,1263 @@
+<title>MBC Antigravity 교육</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#fbfaf7; --surface:#ffffff; --ink:#22293a; --ink-soft:#5b6274;
+  --line:#e4e2da; --accent:#d63b2f; --accent-soft:#fdeeec;
+  --amber:#c98a1b; --amber-soft:#fbf3e2; --green:#2e7d4f; --green-soft:#e8f3ec;
+  --code-bg:#f4f2ec; --sidebar:#f2f0ea;
+}
+/* 항상 밝은 테마로 고정 */
+:root{color-scheme:light}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Noto Sans KR",system-ui,sans-serif; font-size:15px; line-height:1.75;
+}
+h1,h2,h3,h4{font-family:"IBM Plex Sans KR","Noto Sans KR",sans-serif; text-wrap:balance; line-height:1.35}
+.wrap{display:flex; min-height:100vh}
+/* ── 목차 ── */
+nav{
+  width:250px; flex-shrink:0; background:var(--sidebar); border-right:1px solid var(--line);
+  padding:28px 18px; position:sticky; top:0; height:100vh; overflow-y:auto;
+}
+nav .brand{font-family:"IBM Plex Sans KR",sans-serif; font-weight:700; font-size:15px; margin-bottom:2px}
+nav .brand .dot{color:var(--accent)}
+nav .brand-sub{font-size:11px; color:var(--ink-soft); margin-bottom:22px}
+nav .grp{font-size:11px; letter-spacing:.08em; color:var(--ink-soft); margin:18px 0 6px; font-weight:500}
+nav a{
+  display:block; padding:5px 10px; border-radius:6px; text-decoration:none;
+  color:var(--ink); font-size:13px;
+}
+nav a:hover{background:var(--accent-soft)}
+nav a.lab-link{color:var(--accent); font-size:12.5px; padding-left:24px; position:relative}
+nav a.lab-link::before{content:"›"; position:absolute; left:12px}
+nav a:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
+main{flex:1; min-width:0}
+.content{max-width:780px; padding:0 40px 80px; margin:0 auto}
+/* ── 목차 접기 ── */
+.nav-toggle{
+  position:fixed; top:12px; left:190px; z-index:60;
+  width:30px; height:30px; border-radius:6px; border:1px solid var(--line);
+  background:var(--paper); color:var(--ink-soft); cursor:pointer;
+  font-size:15px; line-height:1; display:flex; align-items:center; justify-content:center;
+  transition:left .2s ease;
+}
+.nav-toggle:hover{color:var(--accent); border-color:var(--accent)}
+body.nav-closed .nav-toggle{left:12px}
+body.nav-closed nav{display:none}
+/* ── 사용법 버튼 ── */
+.usage-btn{
+  position:fixed; top:12px; right:16px; z-index:60;
+  width:160px; box-sizing:border-box;
+  display:inline-flex; align-items:center; justify-content:center; gap:6px;
+  font-family:"IBM Plex Sans KR",sans-serif; font-size:12.5px; font-weight:600;
+  border:1px solid var(--line); background:var(--surface); color:var(--ink-soft);
+  border-radius:6px; padding:5px 12px; text-decoration:none;
+}
+.usage-btn{background:#4285F4; border-color:#4285F4; color:#fff}
+.usage-btn:hover{filter:brightness(1.08)}
+.usage-btn:focus-visible{outline:2px solid var(--accent)}
+.usage-btn.cmd{top:52px; background:#FBBC05; border-color:#FBBC05; color:#1f1e1b}
+body.nav-closed .content{max-width:1250px; padding:0 64px 80px; font-size:18px}
+body.nav-closed .content h2{font-size:29px}
+body.nav-closed .content h3{font-size:21px}
+body.nav-closed .content table{font-size:16.5px}
+body.nav-closed .content pre{font-size:14.5px}
+/* ── 히어로 ── */
+header.hero{border-bottom:1px solid var(--line); padding:44px 0 30px; margin-bottom:36px}
+.onair{
+  display:inline-flex; align-items:center; gap:8px; font-family:"IBM Plex Mono",monospace;
+  font-size:11px; letter-spacing:.14em; color:var(--accent); border:1px solid var(--accent);
+  padding:4px 12px; border-radius:3px; margin-bottom:18px;
+}
+.onair::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--accent)}
+header.hero h1{font-size:32px; margin:0 0 10px; font-weight:700}
+header.hero p{color:var(--ink-soft); margin:0; max-width:60ch}
+.hero-meta{display:flex; gap:20px; flex-wrap:wrap; margin-top:18px; font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-soft)}
+/* ── 본문 요소 ── */
+section{margin-bottom:52px}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.14em; color:var(--accent); font-weight:500; margin-bottom:4px}
+h2{font-size:23px; margin:0 0 14px; padding-bottom:10px; border-bottom:2px solid var(--ink)}
+h3{font-size:17px; margin:28px 0 10px}
+h4{font-size:14.5px; margin:20px 0 8px}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 14px; padding-left:22px}
+li{margin-bottom:5px}
+strong{font-weight:700}
+.tablewrap{overflow-x:auto; margin:14px 0}
+table{border-collapse:collapse; width:100%; font-size:13.5px; background:var(--surface)}
+th{background:var(--code-bg); text-align:left; padding:8px 12px; border:1px solid var(--line); font-family:"IBM Plex Sans KR",sans-serif; font-size:12.5px}
+td{padding:8px 12px; border:1px solid var(--line); vertical-align:top}
+td:first-child{white-space:nowrap}
+pre{
+  background:var(--code-bg); border:1px solid var(--line); border-radius:8px;
+  padding:14px 16px; overflow-x:auto; font-family:"IBM Plex Mono",monospace;
+  font-size:12.5px; line-height:1.65; margin:12px 0; position:relative;
+}
+code{font-family:"IBM Plex Mono",monospace; font-size:.92em; background:var(--code-bg); padding:1px 5px; border-radius:4px}
+pre code{background:none; padding:0}
+.copyblock{position:relative; margin:12px 0}
+.copyblock pre{margin:0; padding-top:34px}
+.copyblock .cb-label{
+  position:absolute; top:0; left:0; right:0; z-index:2; display:flex; justify-content:space-between; align-items:center;
+  font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.1em;
+  color:var(--ink-soft); padding:7px 12px 0 16px;
+}
+.copyblock button{
+  font-family:"IBM Plex Mono",monospace; font-size:10.5px; border:1px solid var(--line);
+  background:var(--surface); color:var(--ink-soft); border-radius:4px; padding:2px 9px; cursor:pointer;
+}
+.copyblock button:hover{color:var(--accent); border-color:var(--accent)}
+.copyblock button:focus-visible{outline:2px solid var(--accent)}
+.pre-copy{position:absolute; top:8px; right:10px; font-family:"IBM Plex Mono",monospace; font-size:10.5px; border:1px solid var(--line); background:var(--surface); color:var(--ink-soft); border-radius:4px; padding:2px 9px; cursor:pointer}
+.pre-copy:hover{color:var(--accent); border-color:var(--accent)}
+.pre-copy:focus-visible{outline:2px solid var(--accent)}
+/* 랩업 퀴즈 */
+.quiz{border:1px dashed var(--accent); border-radius:8px; padding:14px 16px; margin:12px 0 6px; background:var(--accent-soft)}
+.quiz-progress{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em; color:var(--ink-soft); margin-bottom:6px}
+.quiz-q{font-weight:600; margin-bottom:12px}
+.quiz-btns{display:flex; gap:10px; flex-wrap:wrap}
+.quiz-btns button,.quiz-next{font-family:inherit; font-size:13.5px; border:1px solid var(--line); background:var(--surface); border-radius:8px; padding:8px 16px; cursor:pointer}
+.quiz-btns button:hover:not(:disabled),.quiz-next:hover{border-color:var(--accent); color:var(--accent)}
+.quiz-btns button:disabled{opacity:.55; cursor:default}
+.quiz-btns button.picked{border-color:var(--accent); font-weight:700}
+.quiz-btns button:focus-visible,.quiz-next:focus-visible{outline:2px solid var(--accent)}
+.quiz-feedback{margin-top:12px; font-size:13.5px; border-radius:6px; padding:10px 12px; line-height:1.6}
+.quiz-feedback.correct{background:var(--green-soft); border:1px solid var(--green)}
+.quiz-feedback.wrong{background:var(--surface); border:1px solid var(--accent)}
+.quiz-next{margin-top:12px}
+.dl-btn{display:inline-block; margin-left:8px; font-family:"IBM Plex Mono",monospace; font-size:12px; border:1px solid var(--accent); color:var(--accent); background:var(--surface); border-radius:6px; padding:3px 12px; text-decoration:none}
+.dl-btn:hover{background:var(--accent-soft)}
+.dl-btn:focus-visible{outline:2px solid var(--accent)}
+.copyblock.bad pre{background:var(--accent-soft); border-color:var(--accent)}
+.copyblock.bad .cb-label span{color:var(--accent); font-weight:700}
+.copyblock.good pre{background:var(--green-soft); border-color:var(--green)}
+.copyblock.good .cb-label span{color:var(--green); font-weight:700}
+/* 콜아웃 */
+.note,.warn,.ok{border-radius:8px; padding:12px 16px; margin:14px 0; font-size:14px; border:1px solid}
+.note{background:var(--amber-soft); border-color:var(--amber)}
+.note b:first-child,.warn b:first-child,.ok b:first-child{display:block; margin-bottom:3px; font-size:12.5px; letter-spacing:.04em}
+.warn{background:var(--accent-soft); border-color:var(--accent)}
+.ok{background:var(--green-soft); border-color:var(--green)}
+/* 다이어그램 */
+.diagram{
+  background:var(--surface); border:1px solid var(--line); border-radius:8px;
+  padding:16px 20px; font-family:"IBM Plex Mono",monospace; font-size:12.5px;
+  line-height:1.9; overflow-x:auto; white-space:pre; margin:14px 0; color:var(--ink);
+}
+figure.spectrum{margin:16px 0; padding:18px 14px 10px; border:1px solid var(--line); border-radius:8px; background:var(--surface)}
+figure.spectrum svg{display:block; max-width:100%; height:auto}
+figure.spectrum figcaption{font-size:12px; color:var(--ink-soft); margin-top:8px; text-align:center}
+/* 실습 카드 */
+.lab{border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:8px; background:var(--surface); padding:22px 26px; margin:22px 0}
+.lab-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:6px}
+.lab-head h3{margin:0; font-size:17px}
+.lab-tags{display:flex; gap:6px; flex-wrap:wrap}
+.tag{font-family:"IBM Plex Mono",monospace; font-size:10.5px; padding:2px 9px; border-radius:10px; border:1px solid var(--line); color:var(--ink-soft); white-space:nowrap}
+.tag.time{border-color:var(--amber); color:var(--amber)}
+.tag.link{border-color:var(--green); color:var(--green)}
+.lab .goal{font-size:14px; color:var(--ink-soft); margin-bottom:12px}
+.check{list-style:none; padding-left:2px}
+.check:not(.check-live) li::before{content:"□ "; color:var(--accent); font-weight:700}
+.check-progress{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-soft); margin:10px 0 2px}
+.check-progress.all-done{color:var(--green); font-weight:700}
+.check.check-live li{cursor:pointer}
+.check.check-live input{accent-color:var(--accent); width:15px; height:15px; margin-right:8px; vertical-align:-2px; cursor:pointer}
+.check.check-live li.done{color:var(--ink-soft); text-decoration:line-through; text-decoration-color:var(--line)}
+code.copyable{cursor:pointer}
+code.copyable:hover{background:var(--accent-soft)}
+code.copyable::after{content:" ⧉"; opacity:.5; font-size:.85em}
+code.copyable.copied{background:var(--green-soft)}
+code.copyable.copied::after{content:" 복사됨"; color:var(--green); opacity:1; font-size:.8em}
+footer{border-top:1px solid var(--line); padding:24px 0 0; color:var(--ink-soft); font-size:12.5px}
+@media (max-width:860px){
+  nav, .nav-toggle{display:none!important}
+  .content{padding:0 20px 60px}
+}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+.pdf-btn{
+  display:inline-flex; align-items:center; gap:6px; margin-top:16px;
+  font-family:"IBM Plex Sans KR",sans-serif; font-size:13px; font-weight:600;
+  border:1px solid var(--ink); background:var(--surface); color:var(--ink);
+  border-radius:8px; padding:8px 16px; cursor:pointer;
+}
+.pdf-btn:hover{border-color:var(--accent); color:var(--accent)}
+.pdf-btn:focus-visible{outline:2px solid var(--accent)}
+/* ── 인쇄(PDF 저장) ── */
+@media print{
+  nav, .nav-toggle, .usage-btn, .pdf-btn, .pre-copy, .copyblock .cb-label button, .quiz, .dl-btn{display:none!important}
+  .wrap{display:block}
+  main{width:100%}
+  .content{max-width:none; padding:0}
+  body{font-size:11.5px; background:#fff}
+  header.hero{padding:0 0 16px; margin-bottom:20px}
+  section{margin-bottom:28px}
+  section, .lab{break-inside:auto}
+  table, pre, figure.spectrum, .note, .warn, .ok, .copyblock{break-inside:avoid}
+  .lab{border-left-width:3px; padding:14px 18px}
+  a{color:inherit; text-decoration:none}
+  code.copyable::after{content:""}
+  .check.check-live li{cursor:auto}
+}
+
+/* ── 스크린샷 ── */
+figure.shot{margin:14px 0; padding:0; border:1px solid var(--line); border-radius:8px; background:var(--surface); overflow:hidden}
+figure.shot img{display:block; width:100%; height:auto}
+figure.shot figcaption{font-size:12px; color:var(--ink-soft); padding:8px 14px; border-top:1px solid var(--line); background:var(--code-bg)}
+figure.shot.narrow{max-width:420px}
+figure.shot.mid{max-width:600px}
+/* 로그인 단계 강조 */
+.step-warn{border:1px solid var(--accent); border-left:4px solid var(--accent); border-radius:8px; background:var(--accent-soft); padding:14px 18px; margin:14px 0}
+.step-warn b:first-child{display:block; margin-bottom:4px; font-size:12.5px; letter-spacing:.04em; color:var(--accent)}
+@media print{nav{display:none} .content{max-width:none}}
+
+/* ── 외부 링크 ── */
+a.exlink{
+  display:inline-flex; align-items:center; gap:6px; text-decoration:none;
+  font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:500;
+  color:var(--accent); border:1px solid var(--accent); border-radius:6px;
+  padding:3px 11px; background:var(--surface); vertical-align:baseline;
+}
+a.exlink:hover{background:var(--accent-soft)}
+a.exlink:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
+a.exlink::after{content:"↗"; font-size:.95em; opacity:.75}
+@media print{a.exlink::after{content:""}}
+
+</style>
+
+<div class="wrap">
+<nav aria-label="목차">
+  <div class="brand">Antigravity<span class="dot">.</span></div>
+  <div class="brand-sub">MBC 교육 과정 3주차 · Megazone Soft</div>
+  <div class="grp">준비</div>
+  <a href="#intro">오늘의 목표와 진행 방식</a>
+  <div class="grp">1부 — 설치와 첫 실행</div>
+  <a href="#s1">1. Antigravity란 무엇인가</a>
+  <a class="lab-link" href="#lab1">실습 1 · 설치와 로그인</a>
+  <a href="#s2">2. 프로젝트 — 작업 범위</a>
+  <a class="lab-link" href="#lab2">실습 2 · 첫 프로젝트</a>
+  <div class="grp">2부 — 바이브 코딩</div>
+  <a href="#s3">3. 아티팩트 — 신뢰의 격차</a>
+  <a class="lab-link" href="#lab3">실습 3 · 첫 산출물 만들기</a>
+  <div class="grp">3부 — 자동화</div>
+  <a href="#s4">4. 슬래시 명령어</a>
+  <a class="lab-link" href="#lab4">실습 4 · 업무 산출물</a>
+  <a href="#s5">5. 예약 실행</a>
+  <a class="lab-link" href="#lab5">실습 5 · 스케줄러</a>
+  <div class="grp">마무리</div>
+  <a href="#s6">6. MCP와 주요 설정</a>
+  <a class="lab-link" href="#lab6">실습 6 · 사내 MCP 연결</a>
+  <a href="#wrapup">랩업 체크</a>
+  <a href="#next">4주차 해커톤 예고</a>
+  <div class="grp">부록</div>
+  <a href="#mcp-tools">사내 MCP 도구 명세</a>
+  <a href="#trouble">문제 해결 (FAQ)</a>
+  <a href="#glossary">용어집</a>
+</nav>
+
+<button class="nav-toggle" id="navToggle" type="button" aria-label="목차 접기/펼치기" title="목차 접기/펼치기">◧</button>
+<a class="usage-btn" href="usage.html" target="_blank" rel="noopener">Antigravity 설정 방법</a>
+<a class="usage-btn cmd" href="commands.html" target="_blank" rel="noopener">Antigravity / 명령어</a>
+<script>
+(function(){
+  var btn = document.getElementById('navToggle');
+  try{ if(localStorage.getItem('agNavClosed')==='1') document.body.classList.add('nav-closed'); }catch(e){}
+  btn.addEventListener('click', function(){
+    var closed = document.body.classList.toggle('nav-closed');
+    try{ localStorage.setItem('agNavClosed', closed ? '1' : '0'); }catch(e){}
+  });
+})();
+</script>
+
+<main><div class="content">
+
+<header class="hero">
+  <div class="onair">TRAINING&nbsp;·&nbsp;WEEK 3 · GOOGLE ANTIGRAVITY</div>
+  <h1>MBC Antigravity 교육</h1>
+  <p>코딩을 모르는 사람이 말로 지시해서 실제로 돌아가는 결과물을 만드는 것 —
+  그게 오늘의 목표입니다. 2주차에서 배운 Gemini Enterprise가 <strong>찾고 요약하는</strong> 도구였다면,
+  Antigravity는 <strong>만드는</strong> 도구입니다.</p>
+  <div class="hero-meta">
+    <span>이론 + 실습 6개</span>
+    <span>대상: 전 직원 (사전 지식 불필요)</span>
+    <span>준비물: 노트북 · 네이버웍스 계정</span>
+  </div>
+  <button type="button" class="pdf-btn" onclick="window.print()">📄 PDF로 저장</button>
+</header>
+
+<section id="intro">
+  <div class="eyebrow">시작하기 전에</div>
+  <h2>오늘의 목표와 진행 방식</h2>
+
+  <p>오늘 여러분은 <strong>코드를 한 줄도 직접 쓰지 않고</strong> 실제로 동작하는 결과물을 만들게 됩니다.
+  Antigravity에게 한국어로 "이런 걸 만들어줘"라고 말하면, 에이전트가 계획을 세우고 · 파일을 만들고 · 실행해서 확인까지 합니다.
+  여러분이 할 일은 <strong>무엇을 원하는지 정확히 말하고, 결과를 검토해서 승인하는 것</strong>입니다.</p>
+
+  <div class="note"><b>2주차와의 연결</b>
+  2주차에서 Gemini Enterprise를 배우며 <strong>No-code · Low-code · Pro-code</strong> 3단계를 살펴봤습니다.
+  Antigravity는 그중 <strong>Pro-code 영역</strong>의 도구입니다 — 다만 오늘 실습에서는 코드를 직접 다루지 않고,
+  에이전트에게 말로 시키는 방식(<strong>바이브 코딩</strong>)으로 접근합니다.</div>
+
+  <h3>오늘 만들어 볼 것</h3>
+  <ul>
+    <li>명령줄에서 뉴스를 가져오는 작은 프로그램 (공통 과제 — 아티팩트를 관찰하기 위한 예제)</li>
+    <li><strong>본인 업무에 쓸 실제 산출물 1개</strong> — 데이터 정리 도구, 문서 자동 생성, 간단한 사내용 웹 페이지 등</li>
+    <li>매일·매주 자동으로 돌아가는 예약 작업 1개</li>
+  </ul>
+
+  <h3>진행 방식</h3>
+  <p>모든 실습은 <strong>공통 과제(전원 동일) → 개인 과제(자기 업무 적용)</strong> 2단계로 진행합니다.
+  각 실습 끝의 체크리스트를 눌러 진행 상황을 표시할 수 있고, 코드·프롬프트 블록은 <strong>복사</strong> 버튼으로
+  그대로 붙여넣어 사용합니다. 막히면 즉시 조별 멘토를 부르세요 — 오늘은 <strong>혼자 해결하는 시간이 아닙니다</strong>.</p>
+
+  <div class="warn"><b>준비물 확인</b>
+  노트북(관리자 권한으로 프로그램 설치 가능해야 합니다) · 네이버웍스 계정 · 인터넷 연결.
+  <strong>설치는 오늘 현장에서 함께 진행</strong>하므로 미리 하지 않으셔도 됩니다.</div>
+</section>
+
+<div class="lab" id="lab1">
+  <div class="lab-head"><h3>실습 1 · 설치와 네이버웍스 SSO 로그인</h3>
+    <div class="lab-tags"><span class="tag time">30분</span><span class="tag">난이도 ★</span><span class="tag">전원 필수</span></div></div>
+  <p class="goal">목표: Antigravity를 설치하고 <strong>사내 계정으로 로그인</strong>해 Gemini Enterprise Plus 라이선스가
+  붙은 상태까지 도달합니다. 오늘 나머지 실습이 전부 여기에 달려 있으므로, <strong>막히면 즉시 손을 들어주세요</strong>.</p>
+
+  <div class="warn"><b>먼저 알아둘 것 — 화면의 파란 버튼을 누르면 안 됩니다</b>
+  MBC는 구글 계정을 직접 발급하지 않고, <strong>네이버웍스 로그인을 구글 클라우드가 신뢰하도록 중계하는 방식</strong>을 씁니다.
+  그래서 화면 가운데 눈에 띄는 <strong>파란색 기본 버튼은 우리 환경에서 동작하지 않습니다</strong>.
+  2단계와 3단계에서 <strong>연속으로 아래쪽 어두운 버튼</strong>을 눌러야 합니다.</div>
+
+  <h4>1-1. 다운로드·설치 (8분)</h4>
+  <ol>
+    <li>브라우저에서 <a class="exlink" href="https://antigravity.google/download" target="_blank" rel="noopener">https://antigravity.google/download</a> 접속 — 새 탭으로 열립니다</li>
+    <li>본인 운영체제(Windows / macOS)용 설치 파일 다운로드</li>
+    <li>다운로드한 파일을 실행해 설치 완료</li>
+  </ol>
+
+  <h4>1-2. <span style="color:var(--accent)">Use business account</span> 클릭 (3분)</h4>
+  <p>설치 후 첫 실행 화면입니다. 파란색 <code>Continue with Google</code>이 <strong>아니라</strong>
+  아래의 <code>Use business account</code>를 클릭합니다.</p>
+  <figure class="shot mid"><img src="img/login_2_crop.png" alt="Welcome to Antigravity 화면에서 Use business account 버튼 선택">
+    <figcaption>2단계 — 파란 버튼 아래, 어두운 <code>Use business account</code></figcaption></figure>
+  <div class="step-warn"><b>여기서 파란 버튼을 누르면</b>
+  개인 Gmail 계정 로그인 화면으로 넘어갑니다. 개인 계정으로는 사내 라이선스가 적용되지 않습니다.
+  잘못 눌렀다면 뒤로 가기 또는 앱을 다시 실행하면 됩니다.</div>
+
+  <h4>1-3. <span style="color:var(--accent)">Use advanced SSO config</span> 선택 (3분)</h4>
+  <p>다음 화면에서도 마찬가지입니다. 파란색 <code>Continue with Google Cloud</code>가 <strong>아니라</strong>
+  아래 <code>Use advanced SSO config</code>를 누릅니다. <strong>여기가 우리 환경이 갈리는 지점</strong>입니다.</p>
+  <figure class="shot mid"><img src="img/login_3_crop.png" alt="Sign in with business account 화면에서 Use advanced SSO config 선택">
+    <figcaption>3단계 — 두 번째로 아래쪽 버튼. 원본 Google 가이드와 달라지는 지점입니다</figcaption></figure>
+
+  <h4>1-4. WIF Config 입력 → Sign in with SSO (10분)</h4>
+  <p><code>WIF Config</code> 칸에 아래 문자열을 <strong>복사해서 그대로</strong> 붙여넣고
+  <code>Sign in with SSO</code>를 클릭합니다. 직접 타이핑하면 오타로 실패하기 쉽습니다.</p>
+  <div class="copyblock"><div class="cb-label"><span>WIF CONFIG · 복사해서 붙여넣기</span><button type="button" data-copy>복사</button></div>
+  <pre><code>locations/global/workforcePools/naverworks/providers/naverworks</code></pre></div>
+  <figure class="shot narrow"><img src="img/login_4_crop.png" alt="WIF Config 입력창에 경로를 붙여넣고 Sign in with SSO 클릭">
+    <figcaption>4단계 — WIF Config 붙여넣기 후 <code>Sign in with SSO</code></figcaption></figure>
+  <p>버튼을 누르면 <strong>브라우저가 자동으로 열립니다</strong>. 열린 창에서 <strong>네이버웍스 계정</strong>으로
+  로그인하세요. 로그인이 끝나면 브라우저가 "돌아가도 좋다"는 안내를 띄우고, Antigravity 앱으로 자동 복귀합니다.</p>
+
+  <h4>1-5. 라이선스 선택 → Next (3분)</h4>
+  <p>로그인 후 라이선스 창이 나오면 표시된 <strong>Gemini Enterprise Plus</strong>를 그대로 두고
+  <code>Next</code>를 눌러 시작합니다.</p>
+  <figure class="shot mid"><img src="img/login_5_crop.png" alt="Select your license 화면에서 Gemini Enterprise Plus 선택 후 Next">
+    <figcaption>5단계 — 라이선스는 이미 선택되어 있습니다. 그대로 <code>Next</code></figcaption></figure>
+
+  <h4>1-6. 로그인 확인 (3분)</h4>
+  <p>좌측 하단 톱니바퀴(<code>Settings</code>) → <code>Account</code> 에서
+  <strong>Your Plan</strong>이 <code>Gemini Enterprise Plus</code>로 표시되면 성공입니다.</p>
+  <figure class="shot mid"><img src="images/slide-06_1.png" alt="Settings Account 화면의 Your Plan 표시">
+    <figcaption>Settings → Account → Your Plan 확인</figcaption></figure>
+
+  <ul class="check">
+    <li>Antigravity 설치 완료</li>
+    <li>Use business account → Use advanced SSO config 경로로 진입</li>
+    <li>WIF Config 붙여넣기 후 네이버웍스 로그인 성공</li>
+    <li>라이선스 Next 완료, 메인 화면 진입</li>
+    <li>Settings → Account에서 Gemini Enterprise Plus 확인</li>
+  </ul>
+
+  <div class="note"><b>먼저 끝나신 분께</b>
+  주변에서 아직 로그인 중인 분을 도와주세요. 특히 <strong>2·3단계에서 파란 버튼을 누른 경우</strong>가 가장 흔합니다.
+  전원이 이 단계를 통과해야 다음으로 넘어갑니다.</div>
+</div>
+
+<section id="s1">
+  <div class="eyebrow">이론</div>
+  <h2>1. Antigravity란 무엇인가</h2>
+
+  <p>한 문장으로: <strong>말로 지시하면 스스로 계획을 세워 일을 해내는 개발 환경</strong>입니다.
+  구글은 이것을 <strong>에이전틱 IDE</strong>라고 부릅니다. 기존 개발 도구가 "사람이 코드를 쓰고 도구는 도와주는" 구조였다면,
+  Antigravity는 <strong>에이전트가 일을 하고 사람은 검토·승인하는</strong> 구조입니다.</p>
+
+  <h3>2주차에 배운 도구들과의 차이</h3>
+  <div class="tablewrap"><table>
+    <tr><th>도구</th><th>무엇을 하나</th><th>결과물</th></tr>
+    <tr><td>Gemini Enterprise 검색</td><td>사내 문서에서 <strong>찾고 요약</strong></td><td>답변 텍스트</td></tr>
+    <tr><td>Gemini Enterprise 에이전트</td><td>정해진 업무 흐름을 <strong>반복 수행</strong></td><td>처리된 업무</td></tr>
+    <tr><td><strong>Antigravity</strong></td><td>지시한 것을 <strong>직접 만들어 실행</strong></td><td>동작하는 프로그램 · 파일 · 문서</td></tr>
+  </table></div>
+  <p>즉 Gemini Enterprise가 <strong>있는 것을 다루는</strong> 도구라면, Antigravity는 <strong>없는 것을 만드는</strong> 도구입니다.</p>
+
+  <h3>비개발자에게 이게 왜 쓸모 있나</h3>
+  <p>"개발 도구"라고 하면 남 얘기 같지만, 실제로는 다음과 같은 일들이 코딩 지식 없이 가능해집니다.</p>
+  <ul>
+    <li><strong>반복 작업 자동화</strong> — 매주 받는 엑셀 20개를 하나로 합쳐 요약표 만들기</li>
+    <li><strong>형식 변환</strong> — 녹취 텍스트를 자막 규격(21자×3줄)으로 일괄 변환</li>
+    <li><strong>자료 수집</strong> — 특정 주제 뉴스를 매일 모아 정리해두기</li>
+    <li><strong>간단한 사내 도구</strong> — 부서 내에서만 쓰는 조회 페이지, 체크리스트 앱</li>
+    <li><strong>문서 작업</strong> — 여러 자료를 근거로 보고서 초안 작성 및 표·차트 생성</li>
+  </ul>
+  <div class="note"><b>오늘의 기준선</b>
+  "내가 매주 반복해서 하는 일 중, 사람이 꼭 판단해야 하는 부분을 뺀 나머지"가 자동화 후보입니다.
+  실습 2에서 이 유형의 <strong>목업 데이터</strong>를 직접 만들어 실습 3·4에서 계속 사용합니다.</div>
+
+  <h3>화면 구성</h3>
+  <p>로그인하면 아래와 같은 화면이 나타납니다. 크게 <strong>왼쪽 프로젝트 목록</strong>과
+  <strong>오른쪽 대화창</strong>으로 나뉩니다. 대화창에 한국어로 지시하면 됩니다.</p>
+  <figure class="shot"><img src="images/slide-07_1.png" alt="Antigravity 메인 인터페이스 화면">
+    <figcaption>Antigravity 기본 인터페이스 — 프로젝트 목록과 채팅 인터페이스</figcaption></figure>
+  <ul>
+    <li><strong>모델 선택</strong> — 대화창 하단에서 사용할 AI 모델을 고릅니다 (기본값 그대로 두면 됩니다)</li>
+    <li><strong><code>+</code> · <code>@</code> · <code>/</code></strong> — 파일 첨부, 특정 파일·에이전트 지목, 명령어 실행</li>
+  </ul>
+</section>
+
+<section id="s2">
+  <div class="eyebrow">이론</div>
+  <h2>2. 프로젝트 — 에이전트의 작업 범위</h2>
+
+  <p>Antigravity는 <strong>프로젝트 단위</strong>로 움직입니다. 프로젝트는 쉽게 말해
+  <strong>"에이전트가 들여다봐도 되는 폴더"</strong>를 지정하는 것입니다.
+  이렇게 범위를 정해두면 에이전트가 엉뚱한 파일을 건드리지 않고, 필요한 맥락만 정확히 봅니다.</p>
+  <ul>
+    <li><strong>여러 폴더를 묶을 수 있습니다</strong> — 예: 자료 폴더 + 결과물 폴더를 한 프로젝트로</li>
+    <li><strong>프로젝트마다 설정이 완전히 분리됩니다</strong> — A 프로젝트의 권한이 B에 영향을 주지 않습니다</li>
+  </ul>
+  <div class="note"><b>비유</b>
+  신입에게 일을 맡길 때 "이 캐비닛 안 자료만 보고 작업하세요"라고 범위를 정해주는 것과 같습니다.
+  범위를 넓게 열수록 편하지만, 실수로 다른 자료를 고칠 위험도 커집니다.</div>
+
+
+</section>
+
+<div class="lab" id="lab2">
+  <div class="lab-head"><h3>실습 2 · 첫 프로젝트 만들기</h3>
+    <div class="lab-tags"><span class="tag time">20분</span><span class="tag link">이론 2장</span><span class="tag">난이도 ★</span></div></div>
+  <p class="goal">목표: 오늘 하루 작업할 <strong>내 프로젝트</strong>를 만들고, 에이전트에게 첫 지시를 내려
+  대화가 되는 것을 확인합니다.</p>
+
+  <h4>2-1. 작업 폴더 만들기 (3분)</h4>
+  <p>먼저 <strong>윈도우 탐색기(또는 Finder)</strong>에서 폴더를 하나 만듭니다. 에이전트가 여기에 결과물을 저장합니다.</p>
+  <ul>
+    <li>위치: <strong>문서</strong> 폴더 아래 (또는 바탕화면)</li>
+    <li>폴더 이름: <code>my-first-project</code> — <strong>영문·소문자·하이픈</strong>으로 만드세요</li>
+  </ul>
+  <div class="note"><b>왜 영문 이름인가</b>
+  한글이나 공백이 들어간 폴더 이름도 대부분 동작하지만, 일부 도구에서 문제가 생길 수 있습니다.
+  오늘은 안전하게 영문으로 통일합니다.</div>
+
+  <h4>2-2. 프로젝트 등록 (10분)</h4>
+  <ol>
+    <li>왼쪽 사이드바에서 <strong>Projects</strong> 옆의 <strong>폴더+ 아이콘</strong>에 마우스를 올리면 <code>Create New Project</code>라고 표시됩니다 — 클릭</li>
+    <li>폴더 선택 창이 열리면 방금 만든 <code>my-first-project</code> 폴더를 선택</li>
+    <li>이것으로 끝입니다 — 프로젝트가 Projects 목록에 나타나고, 이름은 폴더 이름으로 자동 지정됩니다</li>
+  </ol>
+  <div class="note"><b>사이드바 한눈에 보기</b>
+  <strong>New Conversation</strong>(새 대화) · <strong>Conversation History</strong>(지난 대화) ·
+  <strong>Scheduled Tasks</strong>(예약 작업 — 실습 5에서 사용) · <strong>Projects</strong>(프로젝트 목록)가
+  위에서부터 차례로 있습니다.</div>
+  <h4>2-3. 첫 대화 — 에이전트가 살아있는지 확인 (7분)</h4>
+  <p>대화창에 아래 문장을 그대로 넣어보세요. <strong>한국어로 말해도 됩니다.</strong></p>
+  <div class="copyblock"><div class="cb-label"><span>PROMPT · 첫 지시</span><button type="button" data-copy>복사</button></div>
+  <pre><code>이 프로젝트 폴더에 hello.txt 파일을 만들고, 그 안에 오늘 날짜와 내 이름을 써줘.</code></pre></div>
+  <p>에이전트가 무엇을 할지 설명하고, 파일을 만든 뒤 결과를 보고합니다.
+  <strong>탐색기에서 폴더를 열어 파일이 실제로 생겼는지 직접 확인</strong>하세요 — 이게 핵심입니다.
+  화면 속 이야기가 아니라 내 PC에 진짜 파일이 만들어집니다.</p>
+
+  <ul class="check">
+    <li><code>my-first-project</code> 폴더 생성</li>
+    <li>프로젝트 등록 완료 (Create New Project → 폴더 선택)</li>
+    <li>첫 지시로 hello.txt 생성 성공</li>
+    <li>탐색기에서 실제 파일 확인</li>
+  </ul>
+  <h4>개인 과제 — 내 업무용 목업 데이터 프로젝트 만들기</h4>
+  <p>방금 배운 흐름을 한 번 더 반복하며, 이번엔 <strong>실습 3·4에서 계속 쓸 내 데이터</strong>를 준비합니다.</p>
+  <ol>
+    <li>탐색기에서 새 폴더 <code>my-data</code>를 만들고, <strong>Create New Project</strong>로 등록 (프로젝트 2개가 된 상태)</li>
+    <li>새 프로젝트의 대화창에서 본인 업무와 비슷한 <strong>가상(목업) 데이터</strong>를 만들게 합니다</li>
+  </ol>
+  <div class="copyblock"><div class="cb-label"><span>PROMPT 템플릿 · [ ] 부분을 본인 업무로</span><button type="button" data-copy>복사</button></div>
+  <pre><code>내 업무에서 다루는 [ 자료 종류 ]와 비슷한 가상 데이터를 만들어줘.
+- 형식: [ 엑셀(CSV) / 텍스트 파일 / 문서 ]
+- 분량: [ 30건 / 파일 4개 ] 정도
+- 실제 개인정보는 넣지 말고 전부 가상으로</code></pre></div>
+  <p><strong>예시</strong>: 시청자 의견 30건 CSV · 주간보고 4주치 · 출연진 섭외 명단 · 회의록 3개 —
+  이 데이터는 <strong>실습 3·4에서 그대로 재사용</strong>합니다.</p>
+  <ul class="check">
+    <li><code>my-data</code> 폴더 생성 + 두 번째 프로젝트 등록</li>
+    <li>목업 데이터 생성 완료, 탐색기에서 파일 확인</li>
+  </ul>
+</div>
+
+<section id="s3">
+  <div class="eyebrow">이론</div>
+  <h2>3. 아티팩트 — 신뢰의 격차 해소</h2>
+
+  <p>에이전트가 뭔가 만들어줬는데, <strong>그게 제대로 된 건지 어떻게 아나요?</strong>
+  코드를 못 읽는 사람에게 결과물을 던져주면 확인할 방법이 없습니다. 이것을 <strong>신뢰의 격차(Trust Gap)</strong>라고 합니다.</p>
+  <p>Antigravity의 해법은 <strong>작업 과정을 사람이 읽을 수 있는 문서로 남기는 것</strong>입니다.
+  이 문서들을 <strong>아티팩트</strong>라고 부릅니다. 코드를 몰라도 아티팩트만 읽으면
+  <strong>무엇을 · 왜 · 어떻게 했는지</strong> 파악하고 승인 여부를 판단할 수 있습니다.</p>
+
+  <h3>아티팩트 5종</h3>
+  <div class="tablewrap"><table>
+    <tr><th>종류</th><th>언제 나오나</th><th>무엇을 확인하나</th></tr>
+    <tr><td><strong>Task List</strong></td><td>작업 시작 전</td><td>에이전트가 할 일 목록 — <strong>내 의도와 맞는지</strong></td></tr>
+    <tr><td><strong>Implementation Plan</strong></td><td>작업 시작 전</td><td>구체적 설계 — 어떤 파일을 만들고 무엇을 쓸지</td></tr>
+    <tr><td><strong>Walkthrough</strong></td><td>작업 완료 후</td><td>완료 보고서 — 무엇이 바뀌었고 검증은 어떻게 했는지</td></tr>
+    <tr><td><strong>Code diffs</strong></td><td>파일 수정 시</td><td>변경 전후 비교 (코드를 몰라도 <strong>얼마나 바뀌었는지</strong>는 보입니다)</td></tr>
+    <tr><td><strong>Screenshots</strong></td><td>화면이 있는 결과물</td><td>실제 동작 화면 — <strong>비개발자가 가장 확인하기 쉬운 것</strong></td></tr>
+  </table></div>
+
+  <div class="note"><b>비개발자를 위한 읽는 순서</b>
+  ① <strong>Task List</strong>를 보고 "내가 원한 게 맞나" 확인 →
+  ② 실행 후 <strong>Screenshots</strong>로 "제대로 나왔나" 확인 →
+  ③ <strong>Walkthrough</strong>로 "뭘 했는지" 파악.
+  Code diffs와 Implementation Plan은 건너뛰어도 됩니다.</div>
+
+  <h3>승인 단계가 있는 이유</h3>
+  <p>기본 설정에서는 에이전트가 <strong>계획을 먼저 보여주고 승인을 기다립니다</strong>.
+  귀찮게 느껴질 수 있지만, 여기서 <strong>방향이 틀어진 것을 미리 잡는 게 훨씬 쌉니다</strong>.
+  계획 단계에서 "아니, 그게 아니라 이렇게 해줘"라고 고치는 것이, 다 만든 다음 뒤엎는 것보다 빠릅니다.</p>
+
+  <div class="warn"><b>그래도 사람이 최종 책임자입니다</b>
+  아티팩트는 <strong>검토를 쉽게 해주는 장치</strong>이지, 검토를 없애주는 장치가 아닙니다.
+  2주차에서 강조한 원칙 그대로입니다 — <strong>AI 결과물은 초안이며, 검증은 사람의 몫</strong>입니다.
+  특히 방송에 나가는 자료, 대외 문서, 수치가 들어간 보고서는 반드시 사람이 확인하세요.</div>
+</section>
+
+<div class="lab" id="lab3">
+  <div class="lab-head"><h3>실습 3 · 바이브 코딩으로 첫 산출물 만들기</h3>
+    <div class="lab-tags"><span class="tag time">40분</span><span class="tag link">이론 3장</span><span class="tag">난이도 ★★</span><span class="tag">오늘의 핵심</span></div></div>
+  <p class="goal">목표: 말로 지시해서 <strong>실제로 동작하는 결과물</strong>을 만들고, 그 과정에서 나오는
+  <strong>아티팩트를 직접 읽어보며</strong> 검토·승인하는 흐름을 몸에 익힙니다.</p>
+
+  <h4>3-1. 공통 과제 — 뉴스 수집 프로그램 (12분)</h4>
+  <p>전원 동일한 지시로 시작합니다. 결과물 자체보다 <strong>에이전트가 일하는 방식을 관찰</strong>하는 것이 목적입니다.</p>
+  <div class="copyblock"><div class="cb-label"><span>PROMPT · 공통 과제</span><button type="button" data-copy>복사</button></div>
+  <pre><code>명령줄에서 실행하면 구글 뉴스의 최신 기사를 가져와서 보여주는 간단한 프로그램을 만들어줘. 결과는 제목과 링크만 깔끔하게 출력해줘.</code></pre></div>
+  <p>지시를 넣으면 에이전트가 바로 코드를 쓰지 않고 <strong>계획부터 보여줍니다</strong>. 다음 순서로 관찰하세요.</p>
+  <ol>
+    <li><strong>Task List</strong>가 나타나면 읽어봅니다 — 몇 단계로 나눴고, 내가 원한 것과 맞는지</li>
+    <li><strong>승인</strong>을 누르면 에이전트가 파일을 만들기 시작합니다</li>
+    <li>중간에 <strong>터미널 명령 실행 승인</strong>을 물어보면 내용을 보고 허용합니다</li>
+    <li>완료되면 <strong>Walkthrough</strong>를 읽습니다 — 무엇을 만들었고 어떻게 확인했는지</li>
+  </ol>
+  <div class="note"><b>에러가 나도 정상입니다</b>
+  실행 중 오류가 나면 에이전트가 <strong>스스로 읽고 고칩니다</strong>. 그 과정을 지켜보세요.
+  10분 넘게 같은 자리를 맴돌면 <code>다른 방법으로 해봐</code>라고 말해주면 됩니다.</div>
+
+  <h4>3-2. 아티팩트 읽기 훈련 (6분)</h4>
+  <p>만들어진 결과물을 놓고 아래 3가지를 <strong>직접 찾아보세요</strong>. 옆 사람과 서로 설명해보면 더 좋습니다.</p>
+  <div class="tablewrap"><table>
+    <tr><th>찾을 것</th><th>확인 질문</th></tr>
+    <tr><td>Task List</td><td>에이전트가 몇 단계로 나눴나? 빠뜨린 단계는 없나?</td></tr>
+    <tr><td>Walkthrough</td><td>"어떻게 검증했는지"가 적혀 있나? 실제로 실행해봤나?</td></tr>
+    <tr><td>만들어진 파일</td><td>탐색기에서 프로젝트 폴더를 열어 파일이 몇 개 생겼나?</td></tr>
+  </table></div>
+  <p>그리고 결과물을 <strong>한 번 고쳐봅니다</strong> — 대화를 이어서 다음처럼 요청하세요.</p>
+  <div class="copyblock"><div class="cb-label"><span>PROMPT · 수정 요청</span><button type="button" data-copy>복사</button></div>
+  <pre><code>결과를 5개만 보여주고, 각 기사 앞에 번호를 붙여줘.</code></pre></div>
+  <p>이미 만든 것을 <strong>대화로 계속 고칠 수 있다</strong>는 것이 핵심입니다. 처음부터 완벽하게 지시할 필요가 없습니다.</p>
+
+  <h4>3-3. 공통 과제 — 흩어진 파일을 하나의 문서로 (12분)</h4>
+  <p>이번엔 프로그램이 아니라 <strong>문서</strong>를 만듭니다. 회의록·메모·주간보고처럼 흩어진 파일들을
+  에이전트가 읽고 <strong>하나의 정리된 문서</strong>로 통합하는 흐름 — 실무에서 가장 자주 쓰게 될 패턴입니다.
+  전원 동일한 <strong>제공 샘플</strong>으로 진행합니다.</p>
+  <p><strong>샘플 다운로드</strong> — 가상의 방송 프로그램 개편 프로젝트 파일 4개
+  (회의록 2 · 주간보고 1 · 메모 1)
+  <a class="dl-btn" href="samples/mockup-data.zip" download>목업 데이터 다운로드 (.zip)</a></p>
+  <ol>
+    <li>내려받은 <code>mockup-data.zip</code>의 압축을 풀면 <strong>자료</strong> 폴더가 나옵니다</li>
+    <li><strong>자료</strong> 폴더를 통째로 <code>my-first-project</code> 폴더 안으로 옮깁니다</li>
+    <li>파일 4개를 열어 <strong>내용을 대략 훑어봅니다</strong> — 뭐가 겹치고 뭐가 서로 어긋나는지 알아야 결과를 검증할 수 있습니다</li>
+  </ol>
+  <p>그다음 통합을 지시합니다.</p>
+  <div class="copyblock"><div class="cb-label"><span>PROMPT · 문서 통합</span><button type="button" data-copy>복사</button></div>
+  <pre><code>자료 폴더 안의 파일을 전부 읽고 하나의 정리 문서로 만들어줘.
+- 중복된 내용은 한 번만, 서로 어긋나는 내용은 표시해줘
+- 목차를 달고, 각 내용 끝에 어느 파일에서 왔는지 출처를 적어줘
+- 결과는 "정리.md" 파일로 저장해줘</code></pre></div>
+  <p>완성되면 <strong>3가지를 검증</strong>합니다: ① 세 파일에 반복된 "제작비 5% 절감"이 한 번만 나오는가
+  ② 편성 시간이 1차(금 10시)와 2차(토 9시)에서 어긋난 것이 표시되었는가 ③ 출처 표기가 맞고, 원본에 없는 내용이 끼어들지 않았는가.
+  특히 ③ — <strong>AI가 그럴듯하게 지어낸 문장</strong>이 없는지 확인하는 습관이 중요합니다.</p>
+
+  <h4>3-4. 개인 과제 — 내 업무에 적용 (10분)</h4>
+  <p>이번엔 <strong>실습 2에서 만든 <code>my-data</code> 프로젝트의 목업 데이터</strong>로 <strong>내 업무 가공</strong>을 시켜봅니다 — 통합이 아니라 분류·요약표·차트 등
+  본인 업무에서 실제로 필요한 형태를 지시해보세요. 아래 형식을 채워서 지시하면 결과가 훨씬 좋아집니다.</p>
+  <div class="copyblock"><div class="cb-label"><span>PROMPT 템플릿 · [ ] 부분을 본인 내용으로</span><button type="button" data-copy>복사</button></div>
+  <pre><code>[ 어떤 자료를 ] 가지고 [ 무엇을 ] 하고 싶어.
+결과물은 [ 어떤 형태 ]로 만들어줘.
+주의할 점: [ 꼭 지켜야 할 조건 ]</code></pre></div>
+  <p><strong>작성 예시</strong></p>
+  <div class="copyblock good"><div class="cb-label"><span>GOOD · 구체적</span><button type="button" data-copy>복사</button></div>
+  <pre><code>엑셀 파일에 든 시청자 의견 300건을 가지고 유형별로 분류하고 싶어.
+결과물은 유형·건수·대표 의견 3개가 든 표로 만들어줘.
+주의할 점: 개인정보(이름, 전화번호)는 결과에 포함하지 마.</code></pre></div>
+  <div class="copyblock bad"><div class="cb-label"><span>BAD · 막연함</span><button type="button" data-copy>복사</button></div>
+  <pre><code>시청자 의견 정리해줘</code></pre></div>
+  <div class="warn"><b>사내 데이터 사용 기준</b>
+  실습에는 <strong>멘토나 강사에게 보여줘도 괜찮은 사내 데이터만</strong> 사용하세요.
+  개인정보나 민감한 자료는 목업 데이터로 대체하면 됩니다 —
+  <code>테스트용 가상 데이터 30건을 만들어줘</code>라고 요청하세요.</div>
+
+  <ul class="check">
+    <li>공통 과제 완료 — 뉴스 프로그램이 실행됨</li>
+    <li>Task List를 읽고 승인해봄</li>
+    <li>Walkthrough에서 검증 내용 확인</li>
+    <li>대화를 이어서 결과물 1회 수정</li>
+    <li>샘플 다운로드 → 통합 문서(정리.md) 완성</li>
+    <li>통합 문서 3가지 검증 (중복·어긋남·출처)</li>
+    <li>my-data 데이터로 내 업무 가공 1개 완성</li>
+  </ul>
+</div>
+
+<section id="s4">
+  <div class="eyebrow">이론</div>
+  <h2>4. 슬래시 명령어</h2>
+  <p>대화창에 <code>/</code>를 입력하면 자주 쓰는 기능이 목록으로 뜹니다.
+  매번 길게 설명하지 않아도 되는 <strong>단축 지시</strong>라고 보면 됩니다.</p>
+  <figure class="shot"><img src="images/slide-17_1.png" alt="슬래시 명령어 목록 화면">
+    <figcaption>대화창에 <code>/</code> 입력 시 나타나는 명령어 목록</figcaption></figure>
+
+  <div class="tablewrap"><table>
+    <tr><th>명령어</th><th>하는 일</th><th>비개발자 활용 예</th></tr>
+    <tr><td><code>/goal</code></td><td>목표가 <strong>완전히 끝날 때까지</strong> 알아서 계속 실행</td><td>중간에 멈추지 않고 한 번에 끝내고 싶을 때</td></tr>
+    <tr><td><code>/grill-me</code></td><td>에이전트가 <strong>거꾸로 나에게 질문</strong>해서 계획을 다듬음</td><td>⭐ <strong>뭘 원하는지 막연할 때 가장 유용</strong></td></tr>
+    <tr><td><code>/schedule</code></td><td>반복 일정 또는 타이머로 실행 예약</td><td>매일·매주 자동으로 돌릴 작업 (실습 5)</td></tr>
+    <tr><td><code>/browser</code></td><td>웹 브라우저를 직접 조작하는 에이전트 호출</td><td>웹사이트에서 자료 수집 <em>(※ 조직 정책상 차단될 수 있음)</em></td></tr>
+    <tr><td><code>/learn</code></td><td>잘된 작업을 <strong>규칙으로 저장</strong>해 다음에 재사용</td><td>내 업무 방식을 학습시켜 반복 지시 줄이기</td></tr>
+    <tr><td><code>/antigravity-guide</code></td><td>Antigravity 사용법 안내 제공</td><td>막혔을 때 먼저 물어보기</td></tr>
+  </table></div>
+
+  <div class="note"><b><code>/grill-me</code>를 꼭 써보세요</b>
+  비개발자가 가장 어려워하는 건 "무엇을 어떻게 지시해야 할지 모르겠다"입니다.
+  <code>/grill-me</code>는 에이전트가 <strong>면접관처럼 질문을 던져</strong> 원하는 바를 끌어내 줍니다.
+  막연한 아이디어만 있을 때 이걸로 시작하면 계획이 잡힙니다.</div>
+</section>
+
+<div class="lab" id="lab4">
+  <div class="lab-head"><h3>실습 4 · 슬래시 명령어로 업무 산출물 만들기</h3>
+    <div class="lab-tags"><span class="tag time">25분</span><span class="tag link">이론 4장</span><span class="tag">난이도 ★★</span></div></div>
+  <p class="goal">목표: <code>/grill-me</code>로 막연한 아이디어를 구체적 계획으로 바꾸고,
+  <code>/goal</code>로 끝까지 완성시킵니다.</p>
+
+  <h4>4-1. <code>/grill-me</code> — 에이전트에게 인터뷰 받기 (12분)</h4>
+  <p>대화창에 <code>/grill-me</code>를 입력하고, 뒤에 <strong>막연한 아이디어</strong>를 그대로 적습니다.</p>
+  <div class="copyblock"><div class="cb-label"><span>PROMPT · 인터뷰 시작 (예시)</span><button type="button" data-copy>복사</button></div>
+  <pre><code>/grill-me 부서에서 매주 쓰는 업무 보고서를 자동으로 만들고 싶은데 어떻게 해야 할지 모르겠어</code></pre></div>
+  <p>에이전트가 질문을 던지기 시작합니다. <strong>성실하게 답해주세요</strong> — 답이 구체적일수록 결과가 좋아집니다.</p>
+  <div class="tablewrap"><table>
+    <tr><th>에이전트가 물어볼 만한 것</th><th>이렇게 답하면 좋습니다</th></tr>
+    <tr><td>어떤 자료를 쓰나요?</td><td>"엑셀 파일 1개, 주간 실적이 행으로 들어있음"</td></tr>
+    <tr><td>결과물 형태는?</td><td>"A4 한 장 분량 문서, 표 1개 + 요약 3줄"</td></tr>
+    <tr><td>누가 보나요?</td><td>"부서장 보고용, 숫자 근거가 명확해야 함"</td></tr>
+  </table></div>
+  <p>인터뷰가 끝나면 에이전트가 <strong>정리된 계획</strong>을 제시합니다. 이 계획이 처음 막연했던 한 문장과
+  얼마나 달라졌는지 비교해보세요.</p>
+
+  <h4>4-2. <code>/goal</code> — 끝까지 완성시키기 (13분)</h4>
+  <p>계획이 마음에 들면 <code>/goal</code>로 실행합니다. 중간에 멈추지 않고 목표 달성까지 진행합니다.</p>
+  <div class="copyblock"><div class="cb-label"><span>PROMPT · 실행</span><button type="button" data-copy>복사</button></div>
+  <pre><code>/goal 방금 정리한 계획대로 만들어줘. 샘플 데이터는 가상으로 만들어서 테스트까지 해줘.</code></pre></div>
+  <div class="warn"><b><code>/goal</code> 사용 시 주의</b>
+  자율성이 높은 만큼 <strong>진행 상황을 지켜보세요</strong>. 방향이 어긋나면 즉시 중단하고 다시 지시하면 됩니다.
+  파일을 지우거나 덮어쓰는 작업을 물어보면 <strong>내용을 반드시 읽고</strong> 승인하세요.</div>
+
+  <h4>4-3. <code>/learn</code> — 방식 저장하기 (5분)</h4>
+  <p>결과가 만족스러웠다면, 그 방식을 저장해 다음에 재사용할 수 있습니다.</p>
+  <div class="copyblock"><div class="cb-label"><span>PROMPT · 규칙 저장</span><button type="button" data-copy>복사</button></div>
+  <pre><code>/learn 방금 보고서를 만든 방식을 규칙으로 저장해줘. 다음에 같은 요청을 하면 이 형식을 따르도록.</code></pre></div>
+  <p>이렇게 저장해두면 다음 주에는 <strong>"지난번 형식대로 이번 주 보고서 만들어줘"</strong> 한 마디면 됩니다.
+  1주차에 배운 <strong>Skill</strong>과 같은 개념입니다 — 반복 지시를 자산으로 바꾸는 것입니다.</p>
+
+  <ul class="check">
+    <li><code>/grill-me</code>로 인터뷰 진행, 질문에 답변 완료</li>
+    <li>정리된 계획을 처음 아이디어와 비교해봄</li>
+    <li><code>/goal</code>로 결과물 완성</li>
+    <li><code>/learn</code>으로 방식 저장</li>
+  </ul>
+</div>
+
+<section id="s5">
+  <div class="eyebrow">이론</div>
+  <h2>5. 예약 실행 (Schedule)</h2>
+  <p>지금까지는 내가 말할 때마다 에이전트가 움직였습니다. <strong>예약 실행</strong>을 쓰면
+  <strong>정해진 시각에 알아서</strong> 일합니다. 매일 아침 자료를 모아두거나, 매주 월요일 보고서 초안을 만들어두는 식입니다.</p>
+  <figure class="shot"><img src="images/slide-19_1.png" alt="Schedule 화면">
+    <figcaption>Schedule 화면 — 예약된 작업 목록</figcaption></figure>
+
+  <h3>두 가지 용도</h3>
+  <div class="tablewrap"><table>
+    <tr><th>용도</th><th>예시</th></tr>
+    <tr><td><strong>반복 작업 자동화</strong></td><td>매일 아침 8시, 업계 뉴스를 모아 요약 파일로 저장</td></tr>
+    <tr><td><strong>리마인더</strong></td><td>매일 오후 6시, 내일 회의 안건 정리하라고 알림</td></tr>
+  </table></div>
+
+  <div class="note"><b>크론(Cron) 표현식</b>
+  "20분마다", "매주 금요일 오후 3시" 같은 <strong>세밀한 주기</strong>는 크론 표현식으로 지정합니다.
+  외울 필요 없습니다 — 에이전트에게 <code>매주 금요일 오후 3시에 실행되게 해줘</code>라고 말하면 알아서 변환해 줍니다.</div>
+
+  <h3>크론 읽는 법 — 외울 필요 없지만, 보이면 읽을 수 있게</h3>
+  <p>화면에 <code>*/20 * * * *</code> 같은 식이 보여도 당황할 필요 없습니다. 왼쪽부터 <strong>분 · 시 · 일 · 월 · 요일</strong> 5칸이고, <code>*</code>는 "모두", <code>*/20</code>은 "20마다"라는 뜻입니다.</p>
+  <figure class="spectrum">
+  <svg viewBox="0 0 700 210" role="img" aria-label="크론 표현식 5칸 구조: 왼쪽부터 분, 시, 일, 월, 요일. */20은 20분마다라는 뜻">
+    <!-- 5칸 박스 -->
+    <g font-family="IBM Plex Mono, monospace" text-anchor="middle">
+      <rect x="20"  y="18" width="120" height="46" rx="8" fill="#fdeeec" stroke="#d63b2f" stroke-width="2"/>
+      <text x="80"  y="47" font-size="19" font-weight="700" fill="#d63b2f">*/20</text>
+      <rect x="155" y="18" width="120" height="46" rx="8" fill="#ffffff" stroke="#b9b6ac"/>
+      <text x="215" y="47" font-size="19" fill="#22293a">*</text>
+      <rect x="290" y="18" width="120" height="46" rx="8" fill="#ffffff" stroke="#b9b6ac"/>
+      <text x="350" y="47" font-size="19" fill="#22293a">*</text>
+      <rect x="425" y="18" width="120" height="46" rx="8" fill="#ffffff" stroke="#b9b6ac"/>
+      <text x="485" y="47" font-size="19" fill="#22293a">*</text>
+      <rect x="560" y="18" width="120" height="46" rx="8" fill="#ffffff" stroke="#b9b6ac"/>
+      <text x="620" y="47" font-size="19" fill="#22293a">*</text>
+    </g>
+    <!-- 연결선 -->
+    <g stroke="#b9b6ac">
+      <line x1="80"  y1="64" x2="80"  y2="86"/><line x1="215" y1="64" x2="215" y2="86"/>
+      <line x1="350" y1="64" x2="350" y2="86"/><line x1="485" y1="64" x2="485" y2="86"/>
+      <line x1="620" y1="64" x2="620" y2="86"/>
+    </g>
+    <!-- 라벨 -->
+    <g font-family="IBM Plex Sans KR, sans-serif" text-anchor="middle" fill="#22293a">
+      <text x="80"  y="106" font-size="15" font-weight="700">분</text>
+      <text x="215" y="106" font-size="15" font-weight="700">시</text>
+      <text x="350" y="106" font-size="15" font-weight="700">일</text>
+      <text x="485" y="106" font-size="15" font-weight="700">월</text>
+      <text x="620" y="106" font-size="15" font-weight="700">요일</text>
+    </g>
+    <g font-family="IBM Plex Mono, monospace" text-anchor="middle" fill="#5b6274">
+      <text x="80"  y="126" font-size="11.5">0-59</text>
+      <text x="215" y="126" font-size="11.5">0-23</text>
+      <text x="350" y="126" font-size="11.5">1-31</text>
+      <text x="485" y="126" font-size="11.5">1-12</text>
+      <text x="620" y="126" font-size="11.5">0-6 (일=0)</text>
+    </g>
+    <!-- 해석 -->
+    <rect x="20" y="150" width="660" height="42" rx="8" fill="#e8f3ec" stroke="#2e7d4f"/>
+    <text x="350" y="176" font-family="IBM Plex Sans KR, sans-serif" font-size="14.5" text-anchor="middle" fill="#22293a">*/20 = "20분마다"  →  모든 날, 매시간 0·20·40분에 실행</text>
+  </svg>
+  <figcaption>크론 표현식 읽는 법 — 왼쪽부터 분 · 시 · 일 · 월 · 요일</figcaption>
+  </figure>
+  <div class="tablewrap"><table>
+    <tr><th>표현식</th><th>의미</th></tr>
+    <tr><td><code>*/20 * * * *</code></td><td>20분마다 (실습 5-2의 휴식 알림)</td></tr>
+    <tr><td><code>0 18 * * *</code></td><td>매일 오후 6시 정각 (실습 5-1의 회의 리마인더)</td></tr>
+    <tr><td><code>0 15 * * 5</code></td><td>매주 금요일 오후 3시</td></tr>
+    <tr><td><code>0 9 * * 1-5</code></td><td>평일(월~금) 오전 9시</td></tr>
+    <tr><td><code>30 8 1 * *</code></td><td>매달 1일 오전 8시 30분</td></tr>
+  </table></div>
+
+  <div class="warn"><b>PC가 켜져 있어야 합니다</b>
+  예약 작업은 <strong>내 PC의 Antigravity가 실행 중일 때</strong> 동작합니다. 서버에서 돌아가는 게 아닙니다.
+  노트북을 닫아두면 그 시각에 실행되지 않습니다. Settings의 <code>Prevent Sleep</code>·<code>Keep In Menu Bar</code>
+  옵션을 켜두면 도움이 됩니다.</div>
+</section>
+
+<div class="lab" id="lab5">
+  <div class="lab-head"><h3>실습 5 · 스케줄러 등록</h3>
+    <div class="lab-tags"><span class="tag time">15분</span><span class="tag link">이론 5장</span><span class="tag">난이도 ★</span></div></div>
+  <p class="goal">목표: 예약 작업 2개를 등록해 목록에 나타나는 것까지 확인합니다.</p>
+
+  <h4>5-1. 일일 리마인더 등록 (8분)</h4>
+  <ol>
+    <li>Schedule 화면에서 <code>+ New</code> 버튼 클릭</li>
+    <li>실행 주기와 프롬프트를 입력</li>
+  </ol>
+  <figure class="shot mid"><img src="images/slide-20_1.png" alt="스케줄 등록 입력 화면">
+    <figcaption>+ New → 주기와 실행할 프롬프트 입력</figcaption></figure>
+  <div class="copyblock"><div class="cb-label"><span>PROMPT · 일일 리마인더</span><button type="button" data-copy>복사</button></div>
+  <pre><code>매일 오후 6시에 "내일 회의 안건을 정리하세요"라고 알려줘.</code></pre></div>
+  <p><code>Create</code>를 누르면 예약 대기 목록에 등록됩니다.</p>
+  <figure class="shot mid"><img src="images/slide-21_1.png" alt="예약 대기 목록에 등록된 태스크">
+    <figcaption>등록된 예약 작업</figcaption></figure>
+
+  <h4>5-2. 주기적 알림 추가 (7분)</h4>
+  <p>두 번째 예약을 추가합니다. 이번엔 분 단위 주기입니다.</p>
+  <div class="copyblock"><div class="cb-label"><span>PROMPT · 주기적 알림</span><button type="button" data-copy>복사</button></div>
+  <pre><code>20분마다 "잠깐 쉬었다 하세요"라고 알려줘.</code></pre></div>
+  <figure class="shot mid"><img src="images/slide-22_1.png" alt="주기적 알림 설정 화면">
+    <figcaption>크론 표현식으로 세밀한 주기 제어</figcaption></figure>
+  <p>두 개가 모두 목록에 활성화되어 있으면 성공입니다.</p>
+  <figure class="shot mid"><img src="images/slide-23_1.png" alt="두 개의 스케줄된 작업 목록">
+    <figcaption>스케줄 2개 등록 완료</figcaption></figure>
+
+  <h4>5-3. 개인 과제 — 내 업무 예약 (5분)</h4>
+  <p>본인 업무에서 <strong>매일 또는 매주 반복되는 것</strong> 하나를 예약으로 만들어봅니다.</p>
+  <div class="copyblock"><div class="cb-label"><span>PROMPT 템플릿</span><button type="button" data-copy>복사</button></div>
+  <pre><code>매주 [ 요일 ] [ 시각 ]에 [ 무엇을 ] 해서 [ 어디에 ] 저장해줘.</code></pre></div>
+  <div class="note"><b>교육 후 정리</b>
+  실습용으로 만든 "20분마다 알림"은 교육이 끝나면 <strong>삭제하세요</strong>.
+  목록에서 해당 작업을 선택해 삭제할 수 있습니다.</div>
+
+  <ul class="check">
+    <li>일일 리마인더 등록 완료</li>
+    <li>20분 주기 알림 등록 완료</li>
+    <li>목록에 2개가 활성 상태로 표시됨</li>
+    <li>본인 업무용 예약 1개 작성</li>
+  </ul>
+</div>
+
+<section id="s6">
+  <div class="eyebrow">이론 · 참고</div>
+  <h2>6. MCP와 주요 설정</h2>
+
+  <h3>MCP — 외부 시스템 연결</h3>
+  <p><strong>MCP</strong>는 에이전트를 <strong>외부 시스템과 연결하는 표준 규격</strong>입니다.
+  Antigravity 혼자서는 자기 폴더 안의 파일만 다룰 수 있지만, MCP를 붙이면
+  <strong>법령 데이터베이스·전자공시·사내 시스템</strong>을 직접 조회해서 답을 만들 수 있습니다.</p>
+  <div class="note"><b>비유</b>
+  지금까지의 에이전트가 "책상 위 자료만 보고 일하는 직원"이었다면,
+  MCP는 그 직원에게 <strong>도서관 열람증과 전산 조회 권한</strong>을 주는 것과 같습니다.</div>
+
+  <h3>MBC 사내 MCP — 오늘 직접 써봅니다</h3>
+  <p>MBC는 사내에 <strong>오픈 MCP 서버</strong>를 구축해 두었습니다. 오늘 실습에서 이 중 2개를 연결합니다.</p>
+  <div class="tablewrap"><table>
+    <tr><th>서버</th><th>무엇을 조회하나</th><th>이런 업무에</th></tr>
+    <tr><td><strong>mbc-law</strong></td><td>법령 · 시행령 · 세법 · 판례 · 회계기준 질의회신 · 자치법규</td><td>규정 확인, 계약 검토, 방송법·저작권 근거 찾기</td></tr>
+    <tr><td><strong>mbc-dart</strong></td><td>DART 전자공시 · 재무제표 · 주주현황 · 임원 보수 · 공시 이상 탐지</td><td>기업 취재, 경제 리포트, 협력사·경쟁사 재무 확인</td></tr>
+  </table></div>
+  <div class="ok"><b>왜 이게 중요한가</b>
+  2주차에서 배운 검색은 <strong>사내 문서</strong>를 찾는 것이었습니다. 이 MCP들은
+  <strong>법제처·대법원·금융감독원의 원본 데이터</strong>를 직접 조회합니다 —
+  즉 답변의 근거가 <strong>공식 출처</strong>가 됩니다. 취재와 보고서 작성에서 특히 유용합니다.</div>
+  <div class="note"><b>통합 MCP는 추후 제공됩니다</b>
+  위 2개 외에 <strong>사내 정보를 다루는 통합 MCP(<code>mcp/mbc</code>)</strong>가 추가될 예정입니다.
+  사내지원 웹사이트에서 자동 배포를 포함한 연동 방법이 안내될 예정이니, 공지를 확인하세요.</div>
+
+  <h3>연결 방법</h3>
+  <p>MCP 서버 설정은 <code>mcp_config.json</code> 파일에 저장됩니다.
+  <code>설정</code> → <code>맞춤설정</code> → <code>MCP + 추가</code>에서 화면으로 추가할 수도 있고,
+  파일에 직접 써넣을 수도 있습니다. 실습에서는 <strong>파일에 붙여넣는 방식</strong>으로 진행합니다.</p>
+  <figure class="shot mid"><img src="images/slide-24_1.png" alt="MCP 서버 추가 화면">
+    <figcaption>설정 → 맞춤설정 → MCP + 추가</figcaption></figure>
+
+  <h3>알아두면 좋은 설정</h3>
+  <div class="tablewrap"><table>
+    <tr><th>설정</th><th>기본값</th><th>무슨 뜻인가</th></tr>
+    <tr><td>Outside of folders file access</td><td>Deny</td><td>프로젝트 폴더 <strong>바깥 파일은 건드리지 않음</strong> — 그대로 두세요</td></tr>
+    <tr><td>Terminal Command Auto Exec</td><td>Require Review</td><td>명령 실행 전 <strong>사용자 승인 필요</strong> — 그대로 두세요</td></tr>
+    <tr><td>Artifact Review Policy</td><td>Always Ask</td><td>문서 생성·수정 시 항상 확인 — 그대로 두세요</td></tr>
+    <tr><td>Verbose Agent Chat</td><td>—</td><td>에이전트의 <strong>생각 과정</strong>을 보여줌. 켜두면 학습에 도움</td></tr>
+    <tr><td>Prevent Sleep</td><td>—</td><td>작업 중 PC 절전 방지 — <strong>예약 작업 쓸 때 켜두기</strong></td></tr>
+    <tr><td>Appearance</td><td>—</td><td>화면 밝게/어둡게 (Light / Dark)</td></tr>
+  </table></div>
+  <div class="note"><b>설정은 기본값이 안전합니다</b>
+  위 표에서 "그대로 두세요"로 표시한 3개는 <strong>실수로부터 나를 지켜주는 장치</strong>입니다.
+  승인 절차가 번거롭더라도 익숙해지기 전까지는 유지하세요.</div>
+</section>
+
+<div class="lab" id="lab6">
+  <div class="lab-head"><h3>실습 6 · 사내 MCP 연결하고 써보기</h3>
+    <div class="lab-tags"><span class="tag time">15분</span><span class="tag link">이론 6장</span><span class="tag">난이도 ★★</span></div></div>
+  <p class="goal">목표: 사내 법령·공시 MCP를 연결하고, 에이전트가 <strong>공식 출처를 직접 조회해</strong>
+  답하는 것을 확인합니다.</p>
+
+  <h4>6-1. 설정 파일에 서버 추가 (7분)</h4>
+  <p>Antigravity 대화창에 아래를 그대로 지시하면 에이전트가 설정 파일을 찾아 수정해줍니다.
+  파일 위치를 직접 찾을 필요가 없습니다.</p>
+  <div class="copyblock"><div class="cb-label"><span>PROMPT · MCP 추가 요청</span><button type="button" data-copy>복사</button></div>
+  <pre><code>mcp_config.json 파일에 아래 두 개의 MCP 서버를 추가해줘. 기존 설정이 있으면 지우지 말고 병합해줘.
+
+{
+  "mcpServers": {
+    "mbc-law":  { "serverUrl": "https://ai-api-ext.mbc.co.kr/mcp/law/" },
+    "mbc-dart": { "serverUrl": "https://ai-api-ext.mbc.co.kr/mcp/dart/" }
+  }
+}</code></pre></div>
+  <p>직접 편집하고 싶다면 설정 파일은 다음 위치에 있습니다.</p>
+  <div class="copyblock"><div class="cb-label"><span>설정 파일 경로</span><button type="button" data-copy>복사</button></div>
+  <pre><code>~/.gemini/config/mcp_config.json</code></pre></div>
+  <div class="warn"><b>기존 설정을 덮어쓰지 마세요</b>
+  이미 다른 MCP 서버가 등록되어 있다면 <code>mcpServers</code> 안에 <strong>항목만 추가</strong>해야 합니다.
+  파일 전체를 위 내용으로 바꾸면 기존 연동이 사라집니다. 에이전트에게 맡길 때도 "병합해줘"라고 말하는 이유입니다.</div>
+  <p>추가 후 <code>설정</code> → <code>맞춤설정</code>에서 두 서버가 <strong>켜져 있는지</strong> 확인합니다.
+  목록에 보이지 않으면 새로고침하거나 앱을 다시 실행하세요.</p>
+
+  <h4>6-2. 법령 MCP 써보기 (4분)</h4>
+  <p>이제 그냥 질문하면 됩니다. 에이전트가 <strong>알아서 관련 도구를 골라</strong> 조회합니다.</p>
+  <div class="copyblock"><div class="cb-label"><span>PROMPT · 법령 조회</span><button type="button" data-copy>복사</button></div>
+  <pre><code>방송법에서 간접광고를 규정한 조문을 찾아서, 조문 번호와 본문을 그대로 보여줘.</code></pre></div>
+  <p>답변이 오면 <strong>2주차에 배운 검증 습관</strong>을 그대로 적용하세요 —
+  조문 번호가 실제로 맞는지, 본문이 원문 그대로인지 확인합니다.</p>
+
+  <h4>6-3. 공시 MCP 써보기 (4분)</h4>
+  <div class="copyblock"><div class="cb-label"><span>PROMPT · 기업 공시 조회</span><button type="button" data-copy>복사</button></div>
+  <pre><code>최근 3년간 이 회사의 매출과 영업이익 추이를 표로 정리해줘. 출처 공시 문서도 함께 알려줘.
+회사명: (관심 있는 상장사 이름을 넣으세요)</code></pre></div>
+  <div class="note"><b>비개발자 활용 예</b>
+  <strong>기자·PD</strong> — 취재 대상 기업의 재무 상태와 최대주주 확인 ·
+  <strong>경영지원</strong> — 협력사 재무 건전성 점검 ·
+  <strong>법무·심의</strong> — 방송법·저작권법 조문과 판례 근거 찾기 ·
+  <strong>회계</strong> — 세법 유권해석과 회계기준원 질의회신 조회</div>
+
+  <ul class="check">
+    <li>mcp_config.json에 서버 2개 추가 완료</li>
+    <li>맞춤설정에서 두 서버가 활성 상태로 표시됨</li>
+    <li>법령 조회 질문 1회 실행, 조문 번호 확인</li>
+    <li>공시 조회 질문 1회 실행, 출처 문서 확인</li>
+  </ul>
+  <p><strong>개인 과제</strong>: 본인 업무에서 <strong>법령이나 기업 공시를 확인해야 했던 일</strong>을 하나 떠올려
+  질문으로 만들어보세요. 4주차 해커톤에서 쓸 만한 아이디어가 나올 수 있습니다.</p>
+</div>
+
+<section id="mcp-tools">
+  <div class="eyebrow">참고 자료</div>
+  <h2>사내 MCP 도구 명세</h2>
+  <p>에이전트가 알아서 고르므로 <strong>외울 필요는 없습니다</strong>.
+  "이런 것까지 조회할 수 있구나" 정도로 훑어보고, 나중에 필요할 때 찾아보세요.</p>
+
+  <h3>mbc-law — 법률 · 세법 · 판례 · 회계기준</h3>
+  <div class="tablewrap"><table>
+    <tr><th>도구</th><th>하는 일</th></tr>
+    <tr><td><code>search_law</code></td><td>법령 검색 (법률, 시행령, 시행규칙)</td></tr>
+    <tr><td><code>get_law_text</code></td><td>법령 조문 본문 조회</td></tr>
+    <tr><td><code>search_tax_law</code></td><td>세법 및 세무 유권해석 검색</td></tr>
+    <tr><td><code>get_tax_law_doc</code></td><td>세법 조문·해석 문서 조회</td></tr>
+    <tr><td><code>search_kasb_reply</code></td><td>한국회계기준원(KASB) 질의회신 검색</td></tr>
+    <tr><td><code>get_kasb_reply</code></td><td>회계기준원 질의회신 본문 조회</td></tr>
+    <tr><td><code>search_decisions</code></td><td>대법원 판례 및 법원 판결문 검색</td></tr>
+    <tr><td><code>get_decision_text</code></td><td>판결문 전문 조회</td></tr>
+    <tr><td><code>ordinance_radar</code></td><td>자치법규(조례, 규칙) 검색 및 모니터링</td></tr>
+    <tr><td><code>get_annexes</code></td><td>법령 별표·서식 조회</td></tr>
+    <tr><td><code>legal_research</code></td><td>특정 법률 주제 심층 리서치</td></tr>
+    <tr><td><code>legal_analysis</code></td><td>법적 쟁점 검토 및 분석</td></tr>
+    <tr><td><code>discover_tools</code> / <code>execute_tool</code></td><td>법률 전문 서브 도구 탐색 및 실행</td></tr>
+  </table></div>
+
+  <h3>mbc-dart — DART 전자공시 및 재무 분석</h3>
+  <div class="tablewrap"><table>
+    <tr><th>도구</th><th>하는 일</th></tr>
+    <tr><td><code>resolve_corp_code</code></td><td>기업명으로 DART 고유번호·종목코드 조회</td></tr>
+    <tr><td><code>search_disclosures</code></td><td>기업별 공시 보고서 검색</td></tr>
+    <tr><td><code>get_company</code></td><td>기업 개요 정보 조회</td></tr>
+    <tr><td><code>get_financials</code></td><td>재무제표(재무상태표, 손익계산서 등) 조회</td></tr>
+    <tr><td><code>download_document</code></td><td>공시 원문 문서 다운로드</td></tr>
+    <tr><td><code>get_xbrl</code></td><td>XBRL 재무 데이터 추출</td></tr>
+    <tr><td><code>get_periodic_report</code></td><td>사업보고서, 분·반기보고서 등 정기보고서 조회</td></tr>
+    <tr><td><code>get_shareholders</code></td><td>최대주주 및 주주 현황 조회</td></tr>
+    <tr><td><code>get_executive_compensation</code></td><td>임직원 보수 현황 조회</td></tr>
+    <tr><td><code>get_major_holdings</code></td><td>대량보유상황보고 조회</td></tr>
+    <tr><td><code>get_corporate_event</code></td><td>주요사항보고서(합병, 분할, 유상증자 등) 조회</td></tr>
+    <tr><td><code>insider_signal</code></td><td>임직원·내부자 지분 변동 시그널 분석</td></tr>
+    <tr><td><code>disclosure_anomaly</code></td><td>공시 이상 패턴 감지</td></tr>
+    <tr><td><code>buffett_quality_snapshot</code></td><td>버핏 스타일 기업 퀄리티·재무 건전성 분석 스냅샷</td></tr>
+    <tr><td><code>get_attachments</code></td><td>공시 첨부파일 목록 조회</td></tr>
+    <tr><td><code>get_securities_filing</code></td><td>증권신고서 조회</td></tr>
+    <tr><td><code>get_financial_indicators</code></td><td>주요 재무 지표(ROE, 부채비율 등) 산출</td></tr>
+    <tr><td><code>dart_raw</code></td><td>Open DART API 원시 엔드포인트 직접 호출</td></tr>
+  </table></div>
+</section>
+
+<section id="wrapup">
+  <div class="eyebrow">마무리</div>
+  <h2>랩업 체크</h2>
+  <p>오늘 배운 것을 확인해봅니다. 답을 고르면 해설이 나옵니다.</p>
+  <div class="quiz" id="quiz" data-quiz></div>
+
+  <h3>오늘의 핵심 3가지</h3>
+  <ol>
+    <li><strong>말로 지시하면 결과물이 나온다</strong> — 코드를 몰라도 됩니다. 구체적으로 말하는 것이 실력입니다.</li>
+    <li><strong>아티팩트로 검토한다</strong> — Task List로 방향을 확인하고, Walkthrough로 결과를 확인합니다.</li>
+    <li><strong>최종 책임은 사람에게 있다</strong> — AI 결과물은 초안입니다. 특히 대외 자료는 반드시 검증하세요.</li>
+  </ol>
+
+  <h3>교육 후 이어서 해볼 것</h3>
+  <ul>
+    <li>오늘 만든 개인 과제 결과물을 <strong>실제 업무에 한 번 써보기</strong></li>
+    <li><code>/learn</code>으로 저장한 규칙을 다음 주에 재사용해보기</li>
+    <li>잘 된 사례를 <strong>부서에 공유</strong> — 4주차 해커톤 주제 후보가 됩니다</li>
+  </ul>
+</section>
+
+<div class="lab" id="next">
+  <div class="lab-head"><h3>4주차 예고 · 미니 해커톤</h3>
+    <div class="lab-tags"><span class="tag time">4주차</span><span class="tag">조별 진행</span></div></div>
+  <ul>
+    <li><strong>형식</strong>: 1~3주차에 배운 도구를 활용해 MBC 업무 개선 결과물 1개를 완성하고,
+      조당 5분 발표(데모 3분 + 도구 선택 이유 2분)</li>
+    <li><strong>주제 풀(예시)</strong>: 시청자 의견 분류 · 선곡표→저작권 신고 자료 · 스포츠 속보 자막 ·
+      사내 공지 부서별 요약 · 녹취→기사 초안+팩트체크 — 자체 주제 환영</li>
+    <li><strong>심사</strong>: 도구 선택 적절성 40 / 실무 적용 가능성 40 / 완성도 20</li>
+  </ul>
+  <div class="note"><b>오늘 결과물을 버리지 마세요</b>
+  오늘 개인 과제로 만든 것이 해커톤 출품작의 출발점이 될 수 있습니다.
+  프로젝트 폴더를 그대로 두고, 무엇을 만들었는지 간단히 메모해두세요.</div>
+</div>
+
+<section id="trouble">
+  <div class="eyebrow">부록</div>
+  <h2>문제 해결 (FAQ)</h2>
+
+  <h3>로그인 관련</h3>
+  <div class="tablewrap"><table>
+    <tr><th>증상</th><th>원인과 해결</th></tr>
+    <tr><td>개인 Gmail 로그인 화면이 뜬다</td><td>파란색 <code>Continue with Google</code>을 누른 경우입니다.
+      뒤로 가거나 앱을 다시 실행해 <strong><code>Use business account</code></strong>부터 다시 시작하세요.</td></tr>
+    <tr><td>Google Cloud 로그인이 안 된다</td><td>3단계에서 파란색 <code>Continue with Google Cloud</code>를 누른 경우입니다.
+      <strong><code>Use advanced SSO config</code></strong>로 가야 합니다.</td></tr>
+    <tr><td>WIF Config 입력 후 실패</td><td>오타 가능성이 가장 큽니다. 직접 타이핑하지 말고
+      <strong>복사 버튼</strong>으로 붙여넣으세요. 앞뒤 공백도 확인하세요.</td></tr>
+    <tr><td>브라우저가 열렸는데 돌아오지 않는다</td><td>네이버웍스 로그인을 완료했는지 확인하세요.
+      완료 후에도 멈춰 있으면 Antigravity 앱 창을 직접 클릭해 전환해보세요.</td></tr>
+    <tr><td>로그인은 됐는데 AI 기능이 실패한다</td><td>GCP 권한(IAM)이 부여되지 않은 경우입니다.
+      <strong>IT 담당 부서에 권한 요청</strong>이 필요합니다 — 사용자가 해결할 수 없습니다.</td></tr>
+    <tr><td>라이선스 화면에 아무것도 안 보인다</td><td>계정에 Gemini Enterprise 라이선스가 배정되지 않았을 수 있습니다.
+      멘토를 불러주세요.</td></tr>
+  </table></div>
+
+  <h3>사용 중 문제</h3>
+  <div class="tablewrap"><table>
+    <tr><th>증상</th><th>해결</th></tr>
+    <tr><td>에이전트가 같은 자리를 반복한다</td><td><code>다른 방법으로 해봐</code> 또는 <code>지금까지 뭐가 막혔는지 설명해줘</code>라고 요청</td></tr>
+    <tr><td>엉뚱한 결과가 나온다</td><td>대화를 이어서 고치면 됩니다. 처음부터 다시 할 필요 없습니다</td></tr>
+    <tr><td>파일이 안 보인다</td><td>프로젝트 폴더 경로를 확인하세요. 탐색기에서 직접 열어봅니다</td></tr>
+    <tr><td>승인 창이 계속 뜬다</td><td>정상입니다 — 실수를 막아주는 안전장치입니다. 내용을 읽고 승인하세요</td></tr>
+    <tr><td><code>/browser</code>가 동작하지 않는다</td><td>조직 정책으로 차단된 상태입니다. 다른 방법을 쓰세요</td></tr>
+    <tr><td>예약 작업이 실행되지 않았다</td><td>그 시각에 PC가 켜져 있고 Antigravity가 실행 중이었는지 확인</td></tr>
+    <tr><td>MCP 서버가 목록에 안 보인다</td><td>맞춤설정 화면을 새로고침하거나 앱을 다시 실행하세요. JSON 문법 오류(쉼표·괄호)도 확인</td></tr>
+    <tr><td>MCP 조회가 실패한다</td><td>사내망 접속 상태인지 확인하세요. <code>ai-api-ext.mbc.co.kr</code> 접근이 막혔으면 IT 담당 부서에 문의</td></tr>
+    <tr><td>기존 MCP 설정이 사라졌다</td><td>파일 전체를 덮어쓴 경우입니다. <code>mcpServers</code> 안에 항목만 추가해야 합니다</td></tr>
+  </table></div>
+
+  <div class="note"><b>그래도 안 되면</b>
+  대화창에 <code>/antigravity-guide</code>를 입력해 물어보거나, 조별 멘토를 부르세요.</div>
+</section>
+
+<section id="glossary">
+  <div class="eyebrow">부록</div>
+  <h2>용어집</h2>
+
+  <h3>기본 개념</h3>
+  <div class="tablewrap"><table>
+    <tr><th>용어</th><th>뜻</th></tr>
+    <tr><td><strong>에이전트</strong></td><td>지시를 받아 <strong>스스로 판단하며 여러 단계 작업을 수행</strong>하는 AI</td></tr>
+    <tr><td><strong>에이전틱 IDE</strong></td><td>에이전트가 주도적으로 일하는 개발 환경. Antigravity가 여기 해당</td></tr>
+    <tr><td><strong>바이브 코딩</strong></td><td>코드를 직접 쓰지 않고 <strong>자연어로 지시</strong>해 프로그램을 만드는 방식</td></tr>
+    <tr><td><strong>아티팩트</strong></td><td>에이전트가 남기는 <strong>사람이 읽을 수 있는 작업 기록</strong> (계획서·보고서·화면 등)</td></tr>
+    <tr><td><strong>Walkthrough</strong></td><td>작업 완료 후 <strong>무엇을 했고 어떻게 검증했는지</strong> 정리한 보고서</td></tr>
+    <tr><td><strong>프로젝트</strong></td><td>에이전트가 접근할 수 있는 <strong>폴더 범위와 권한 설정</strong>의 묶음</td></tr>
+    <tr><td><strong>터미널</strong></td><td>명령어를 글자로 입력해 컴퓨터를 조작하는 화면. 에이전트가 대신 사용합니다</td></tr>
+  </table></div>
+
+  <h3>로그인·인증</h3>
+  <div class="tablewrap"><table>
+    <tr><th>용어</th><th>뜻</th></tr>
+    <tr><td><strong>SSO</strong></td><td>한 번 로그인하면 여러 서비스를 함께 쓰는 <strong>통합 인증</strong></td></tr>
+    <tr><td><strong>WIF</strong></td><td>Workforce Identity Federation. 네이버웍스 로그인을 <strong>구글 클라우드가 신뢰하도록 중계</strong>하는 방식</td></tr>
+    <tr><td><strong>WIF Config</strong></td><td>로그인 4단계에서 붙여넣는 <strong>사내 인증 경로 문자열</strong>. 이 값이 있어야 네이버웍스 SSO로 연결됩니다</td></tr>
+    <tr><td><strong>라이선스(플랜)</strong></td><td>계정에 적용된 이용 권한. 사내 계정은 <strong>Gemini Enterprise Plus</strong>가 조직 관리로 적용됩니다</td></tr>
+  </table></div>
+
+  <h3>설정·권한</h3>
+  <div class="tablewrap"><table>
+    <tr><th>용어</th><th>뜻</th></tr>
+    <tr><td><strong>샌드박스</strong></td><td>에이전트의 명령 실행을 <strong>격리된 안전 영역</strong>으로 제한하는 장치. 실수로 시스템의 다른 영역을 건드리는 것을 막습니다</td></tr>
+    <tr><td><strong>작업 폴더</strong></td><td>프로젝트에 등록되어 에이전트가 <strong>자유롭게 읽고 쓸 수 있는 폴더</strong>. 그 바깥은 접근 정책(Ask/Allow/Deny)을 따릅니다</td></tr>
+    <tr><td><strong>Inherit General</strong></td><td>프로젝트 설정에서 <strong>전역(General) 설정을 그대로 따른다</strong>는 값. 프로젝트별로 다르게 지정하면 재정의됩니다</td></tr>
+    <tr><td><strong>커스터마이징</strong></td><td>스킬·규칙·MCP처럼 에이전트의 <strong>기본 동작을 바꾸거나 확장</strong>하는 설정의 총칭</td></tr>
+    <tr><td><strong>토큰 예산</strong></td><td>커스터마이징이 매 대화에 실릴 수 있는 <strong>총량 한도</strong>. 초과하면 큰 커스터마이징부터 자동으로 잘립니다</td></tr>
+  </table></div>
+
+  <h3>자동화·연동</h3>
+  <div class="tablewrap"><table>
+    <tr><th>용어</th><th>뜻</th></tr>
+    <tr><td><strong>슬래시 명령어</strong></td><td>대화창에 <code>/이름</code> 형태로 입력해 <strong>미리 정의된 작업을 호출</strong>하는 명령. 예: <code>/antigravity-guide</code></td></tr>
+    <tr><td><strong>스킬</strong></td><td>특정 상황에서 에이전트가 따르는 <strong>미리 만들어진 작업 절차</strong>. 슬래시 명령어로 부르거나 상황에 맞게 자동 적용됩니다</td></tr>
+    <tr><td><strong>서브에이전트</strong></td><td>특정 작업을 전담하는 보조 에이전트. 예: <code>/browser</code>로 호출하는 <strong>브라우저 서브에이전트</strong> (Chrome 필요)</td></tr>
+    <tr><td><strong>MCP</strong></td><td>Model Context Protocol. 에이전트를 <strong>외부 시스템에 연결</strong>하는 표준 규격. 사내에 <code>mbc-law</code>·<code>mbc-dart</code> 서버가 구축되어 있습니다</td></tr>
+    <tr><td><strong>플러그인</strong></td><td>스킬·MCP 등을 <strong>묶어서 배포하는 확장 단위</strong>. Build With Google 카탈로그에서 골라 켤 수 있습니다</td></tr>
+    <tr><td><strong>크론(Cron)</strong></td><td>"매주 금요일 3시" 같은 <strong>반복 주기를 표현하는 형식</strong>. 예약 실행에서 사용합니다</td></tr>
+    <tr><td><strong>DART</strong></td><td>금융감독원 <strong>전자공시 시스템</strong>. 상장사의 재무제표·주주현황·주요사항이 공시되는 곳</td></tr>
+  </table></div>
+</section>
+
+
+
+<footer>
+  MBC Antigravity 교육 (3주차) · Megazone Soft · 2026.09
+</footer>
+
+<script>
+function attachCopy(btn, getText){
+  btn.addEventListener('click', function(){
+    var done = function(){ btn.textContent='복사됨'; setTimeout(function(){btn.textContent='복사';},1500); };
+    var fallback = function(txt){
+      var ta=document.createElement('textarea'); ta.value=txt;
+      ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(ta); done();
+    };
+    var txt = getText();
+    try{
+      navigator.clipboard.writeText(txt).then(done, function(){ fallback(txt); });
+    }catch(e){ fallback(txt); }
+  });
+}
+/* 라벨형 복사 블록 */
+document.querySelectorAll('.copyblock').forEach(function(cb){
+  var btn = cb.querySelector('[data-copy]');
+  var pre = cb.querySelector('pre');
+  if(btn && pre) attachCopy(btn, function(){ return pre.textContent; });
+});
+/* 나머지 모든 코드 블록에 복사 버튼 자동 부착 */
+document.querySelectorAll('pre').forEach(function(pre){
+  if(pre.closest('.copyblock')) return;
+  var txt = pre.textContent;
+  var btn = document.createElement('button');
+  btn.type='button'; btn.className='pre-copy'; btn.textContent='복사';
+  pre.appendChild(btn);
+  attachCopy(btn, function(){ return txt; });
+});
+/* 체크리스트: 실제 체크 + 진행 표시 (이 브라우저에 저장됨) */
+(function(){
+  document.querySelectorAll('ul.check').forEach(function(ul, uidx){
+    ul.classList.add('check-live');
+    var items = Array.prototype.slice.call(ul.querySelectorAll('li'));
+    var prog = document.createElement('div'); prog.className = 'check-progress';
+    ul.parentNode.insertBefore(prog, ul);
+    var key = 'ge-check-' + uidx, saved = [];
+    try{ saved = JSON.parse(localStorage.getItem(key) || '[]'); }catch(e){}
+    var boxes = items.map(function(li, i){
+      var cb = document.createElement('input'); cb.type = 'checkbox';
+      cb.checked = !!saved[i];
+      li.insertBefore(cb, li.firstChild);
+      cb.addEventListener('change', update);
+      li.addEventListener('click', function(ev){
+        if(ev.target === cb) return;
+        cb.checked = !cb.checked; update();
+      });
+      return cb;
+    });
+    function update(){
+      var n = 0;
+      boxes.forEach(function(b, i){ if(b.checked) n++; items[i].classList.toggle('done', b.checked); });
+      prog.textContent = (n === boxes.length) ? '✅ ' + n + ' / ' + boxes.length + ' 완료!' : '완료 ' + n + ' / ' + boxes.length;
+      prog.classList.toggle('all-done', n === boxes.length);
+      try{ localStorage.setItem(key, JSON.stringify(boxes.map(function(b){ return b.checked ? 1 : 0; }))); }catch(e){}
+    }
+    update();
+  });
+})();
+/* 인라인 코드 클릭 복사는 제거됨 — 프롬프트/명령어 블록(pre)의 복사 버튼만 유지 */
+/* 랩업 체크 퀴즈 — Antigravity (3주차) */
+(function(){
+  var host = document.querySelector('[data-quiz]');
+  if(!host) return;
+  var Q = [
+    { q: "Q1. 사내 계정으로 로그인할 때, 첫 화면에서 눌러야 하는 것은?",
+      opts: ["Continue with Google (파란 버튼)", "Use business account (아래 버튼)"],
+      a: 1,
+      why: "MBC는 네이버웍스 로그인을 구글 클라우드가 신뢰하도록 중계하는 WIF 방식입니다. 파란 기본 버튼은 개인 Gmail 경로라 사내 라이선스가 적용되지 않습니다." },
+    { q: "Q2. 두 번째 화면에서 Continue with Google Cloud를 눌렀다. 어떻게 되나?",
+      opts: ["정상 진행된다", "우리 환경에서는 로그인되지 않는다"],
+      a: 1,
+      why: "3단계에서도 아래쪽 Use advanced SSO config로 가야 합니다. WIF Config에 사내 경로를 넣어야 네이버웍스로 인증이 넘어갑니다. 2·3단계 연속으로 파란 버튼이 오답입니다." },
+    { q: "Q3. 에이전트가 작업 계획(Task List)을 보여줬다. 무엇을 해야 하나?",
+      opts: ["내 의도와 맞는지 읽고 승인한다", "코드를 모르니 그냥 승인한다"],
+      a: 0,
+      why: "Task List는 코드가 아니라 '할 일 목록'입니다. 여기서 방향을 잡는 게 다 만든 뒤 뒤엎는 것보다 훨씬 쌉니다. 비개발자가 가장 확인하기 쉬운 아티팩트입니다." },
+    { q: "Q4. 결과물이 원하는 것과 다르게 나왔다. 가장 나은 대응은?",
+      opts: ["처음부터 다시 지시한다", "대화를 이어서 고쳐달라고 한다"],
+      a: 1,
+      why: "이미 만든 것을 대화로 계속 고칠 수 있습니다. 처음부터 완벽하게 지시할 필요가 없다는 것이 바이브 코딩의 핵심입니다." },
+    { q: "Q5. 무엇을 만들지 막연할 때 가장 유용한 슬래시 명령어는?",
+      opts: ["/goal", "/grill-me"],
+      a: 1,
+      why: "/grill-me는 에이전트가 거꾸로 질문을 던져 원하는 바를 끌어내 줍니다. 계획이 잡힌 뒤에 /goal로 실행하는 순서가 좋습니다." },
+    { q: "Q6. 프로젝트란 무엇을 정하는 것인가?",
+      opts: ["에이전트가 들여다볼 수 있는 폴더 범위", "사용할 AI 모델의 종류"],
+      a: 0,
+      why: "프로젝트는 에이전트의 작업 범위입니다. 범위를 정해두면 에이전트가 엉뚱한 파일을 건드리지 않고 필요한 맥락만 정확히 봅니다. 폴더는 여러 개를 묶을 수도 있습니다." },
+    { q: "Q7. 매일 오전 8시로 예약한 작업이 실행되지 않았다. 가장 가능성 높은 원인은?",
+      opts: ["그 시각에 PC가 꺼져 있었다", "서버 장애가 났다"],
+      a: 0,
+      why: "예약 작업은 내 PC의 Antigravity가 실행 중일 때 동작합니다. 서버에서 돌아가는 것이 아닙니다. Prevent Sleep 설정이 도움이 됩니다." },
+    { q: "Q8. 사내 MCP(mbc-law, mbc-dart)를 붙이면 무엇이 달라지나?",
+      opts: ["법제처·대법원·DART 원본 데이터를 직접 조회한다", "사내 문서를 더 빠르게 검색한다"],
+      a: 0,
+      why: "MCP는 외부 시스템을 연결하는 통로입니다. 사내 문서 검색은 2주차 Gemini Enterprise의 영역이고, 이 MCP들은 공식 원본 데이터를 근거로 삼게 해줍니다." },
+    { q: "Q9. 에이전트가 만든 보고서를 그대로 대외 자료로 쓸 수 있나?",
+      opts: ["아티팩트로 검증됐으니 괜찮다", "사람이 반드시 확인해야 한다"],
+      a: 1,
+      why: "아티팩트는 검토를 쉽게 해주는 장치이지 검토를 없애주는 장치가 아닙니다. AI 결과물은 초안이며 최종 책임은 사람에게 있습니다 — 2주차와 동일한 원칙입니다." }
+  ];
+  var i = 0, score = 0, answered = false;
+  host.innerHTML = '<div class="quiz-progress"></div><div class="quiz-q"></div>'
+    + '<div class="quiz-btns"></div><div class="quiz-feedback" hidden></div>'
+    + '<button type="button" class="quiz-next" hidden>다음 문제 →</button>';
+  var elP = host.querySelector('.quiz-progress'),
+      elQ = host.querySelector('.quiz-q'),
+      elB = host.querySelector('.quiz-btns'),
+      elF = host.querySelector('.quiz-feedback'),
+      elN = host.querySelector('.quiz-next');
+
+  function render(){
+    answered = false;
+    elP.textContent = (i + 1) + ' / ' + Q.length + '   ·   맞힌 개수 ' + score;
+    elQ.textContent = Q[i].q;
+    elF.hidden = true; elF.className = 'quiz-feedback';
+    elN.hidden = true;
+    elB.innerHTML = '';
+    Q[i].opts.forEach(function(label, idx){
+      var b = document.createElement('button');
+      b.type = 'button'; b.textContent = label;
+      b.addEventListener('click', function(){ answer(idx, b); });
+      elB.appendChild(b);
+    });
+  }
+  function answer(choice, btn){
+    if(answered) return;
+    answered = true;
+    var ok = (choice === Q[i].a);
+    if(ok) score++;
+    btn.classList.add('picked');
+    Array.prototype.forEach.call(elB.children, function(b){ b.disabled = true; });
+    elF.hidden = false;
+    elF.className = 'quiz-feedback ' + (ok ? 'correct' : 'wrong');
+    elF.innerHTML = '<b>' + (ok ? '정답' : '다시 보기') + '</b> — ' + Q[i].why;
+    elN.hidden = false;
+    elN.textContent = (i === Q.length - 1) ? '결과 보기 →' : '다음 문제 →';
+  }
+  elN.addEventListener('click', function(){
+    if(i === Q.length - 1){
+      elP.textContent = '완료';
+      elQ.textContent = '랩업 체크 결과 — ' + Q.length + '문제 중 ' + score + '문제 정답';
+      elB.innerHTML = '';
+      elF.hidden = false;
+      elF.className = 'quiz-feedback ' + (score >= 7 ? 'correct' : 'wrong');
+      elF.innerHTML = (score === Q.length)
+        ? '<b>전부 정답입니다</b> — 4주차 해커톤 준비 완료.'
+        : (score >= 7
+          ? '<b>잘 하셨습니다</b> — 틀린 문항의 해설을 다시 한 번 읽어보세요.'
+          : '<b>복습이 필요합니다</b> — 특히 로그인 절차(실습 1)와 아티팩트(3장)를 다시 확인하세요.');
+      elN.hidden = true;
+      return;
+    }
+    i++; render();
+  });
+  render();
+})();
+
+</script>
+
+</div></main>
+</div>
