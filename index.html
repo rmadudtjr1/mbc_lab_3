@@ -337,7 +337,7 @@ a.exlink::after{content:"↗"; font-size:.95em; opacity:.75}
   <h4>1-2. <span style="color:var(--accent)">Use business account</span> 클릭 (3분)</h4>
   <p>설치 후 첫 실행 화면입니다. 파란색 <code>Continue with Google</code>이 <strong>아니라</strong>
   아래의 <code>Use business account</code>를 클릭합니다.</p>
-  <figure class="shot mid"><img src="img/login_2_crop.png" alt="Welcome to Antigravity 화면에서 Use business account 버튼 선택">
+  <figure class="shot mid"><img src="img/new_login1.png" alt="Welcome to Antigravity 화면에서 Use business account 버튼 선택">
     <figcaption>2단계 — 파란 버튼 아래, 어두운 <code>Use business account</code></figcaption></figure>
   <div class="step-warn"><b>여기서 파란 버튼을 누르면</b>
   개인 Gmail 계정 로그인 화면으로 넘어갑니다. 개인 계정으로는 사내 라이선스가 적용되지 않습니다.
@@ -346,7 +346,7 @@ a.exlink::after{content:"↗"; font-size:.95em; opacity:.75}
   <h4>1-3. <span style="color:var(--accent)">Use advanced SSO config</span> 선택 (3분)</h4>
   <p>다음 화면에서도 마찬가지입니다. 파란색 <code>Continue with Google Cloud</code>가 <strong>아니라</strong>
   아래 <code>Use advanced SSO config</code>를 누릅니다. <strong>여기가 우리 환경이 갈리는 지점</strong>입니다.</p>
-  <figure class="shot mid"><img src="img/login_3_crop.png" alt="Sign in with business account 화면에서 Use advanced SSO config 선택">
+  <figure class="shot mid"><img src="img/new_login2.png" alt="Sign in with business account 화면에서 Use advanced SSO config 선택">
     <figcaption>3단계 — 두 번째로 아래쪽 버튼. 원본 Google 가이드와 달라지는 지점입니다</figcaption></figure>
 
   <h4>1-4. WIF Config 입력 → Sign in with SSO (10분)</h4>
@@ -354,7 +354,7 @@ a.exlink::after{content:"↗"; font-size:.95em; opacity:.75}
   <code>Sign in with SSO</code>를 클릭합니다. 직접 타이핑하면 오타로 실패하기 쉽습니다.</p>
   <div class="copyblock"><div class="cb-label"><span>WIF CONFIG · 복사해서 붙여넣기</span><button type="button" data-copy>복사</button></div>
   <pre><code>locations/global/workforcePools/naverworks/providers/naverworks</code></pre></div>
-  <figure class="shot narrow"><img src="img/login_4_crop.png" alt="WIF Config 입력창에 경로를 붙여넣고 Sign in with SSO 클릭">
+  <figure class="shot narrow"><img src="img/new_login3.png" alt="WIF Config 입력창에 경로를 붙여넣고 Sign in with SSO 클릭">
     <figcaption>4단계 — WIF Config 붙여넣기 후 <code>Sign in with SSO</code></figcaption></figure>
   <p>버튼을 누르면 <strong>브라우저가 자동으로 열립니다</strong>. 열린 창에서 <strong>네이버웍스 계정</strong>으로
   로그인하세요. 로그인이 끝나면 브라우저가 "돌아가도 좋다"는 안내를 띄우고, Antigravity 앱으로 자동 복귀합니다.</p>
@@ -366,22 +366,30 @@ a.exlink::after{content:"↗"; font-size:.95em; opacity:.75}
   이미 설정한 분도 오류가 나면 <strong>로그아웃 후 이 순서대로 다시 로그인</strong>하세요.</div>
   <p>로그인 후 <code>Select your license</code> 창이 나오면 위에 보이는 <strong>Gemini Enterprise Plus를 고르지 말고</strong>,
   아래의 <code>Other →</code>를 누릅니다.</p>
+  <figure class="shot mid"><img src="img/new_login4.png" alt="Select your license 화면에서 Gemini Enterprise Plus 대신 Other 선택">
+    <figcaption>5단계 — 위의 Gemini Enterprise Plus가 아니라 아래 <code>Other →</code></figcaption></figure>
 
   <h4>1-6. Google Cloud 프로젝트 입력 → Next (2분)</h4>
   <p><code>Provide Google Cloud Project</code> 칸에 아래 프로젝트 ID를 <strong>복사해서 그대로</strong> 붙여넣고
   <code>Next</code>를 누릅니다.</p>
   <div class="copyblock"><div class="cb-label"><span>PROJECT ID · 복사해서 붙여넣기</span><button type="button" data-copy>복사</button></div>
   <pre><code>hybrid-chariot-506008-k1</code></pre></div>
+  <figure class="shot narrow"><img src="img/new_login5.png" alt="Provide Google Cloud Project 입력창에 프로젝트 ID 입력 후 Next">
+    <figcaption>6단계 — 프로젝트 ID 붙여넣기 후 <code>Next</code></figcaption></figure>
 
   <h4>1-7. Global · Agent Platform 선택 → Next (2분)</h4>
   <p>이어서 나오는 화면에서 <code>Choose Region</code>은 <strong>Global</strong>을,
   <code>Select License</code>는 Gemini Enterprise Plus가 <strong>아니라</strong>
   <strong>Agent Platform</strong> (Pay as you go)을 선택하고 <code>Next</code>를 누릅니다.</p>
+  <figure class="shot narrow"><img src="img/new_login6.png" alt="Choose Region에서 Global, Select License에서 Agent Platform 선택 후 Next">
+    <figcaption>7단계 — Region은 <code>Global</code>, License는 <code>Agent Platform</code></figcaption></figure>
 
   <h4>1-8. 약관 확인 → Finish, 로그인 확인 (3분)</h4>
   <p><code>Terms of Service &amp; Data Use</code> 화면에서 <code>Finish</code>를 누르면 로그인이 끝납니다.
   좌측 하단 톱니바퀴(<code>Settings</code>) → <code>Account</code>에서
   라이선스가 <strong>Agent Platform</strong>으로 표시되면 성공입니다.</p>
+  <figure class="shot mid"><img src="img/new_login7.png" alt="Terms of Service &amp; Data Use 화면에서 Finish 클릭">
+    <figcaption>8단계 — 약관 확인 후 <code>Finish</code></figcaption></figure>
 
   <ul class="check">
     <li>Antigravity 설치 완료</li>
