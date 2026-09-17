@@ -67,7 +67,7 @@ td:first-child{white-space:nowrap; font-weight:600}
   <table>
     <tr><th>항목</th><th>설명</th></tr>
     <tr><td>Security Preset</td><td>에이전트가 할 수 있는 행동 범위를 묶음으로 정하는 프리셋입니다.
-      <strong>현재 사용하는 라이선스(Gemini Enterprise Plus)에서는 <code>Custom</code>으로 고정</strong>되어 있으며,
+      <strong>현재 사용하는 사내 라이선스에서는 <code>Custom</code>으로 고정</strong>되어 있으며,
       아래 개별 항목(파일 접근·명령 실행 등)을 통해 세부 정책을 조정합니다.</td></tr>
     <tr><td>Outside of folders file access policy</td><td>에이전트가 <strong>작업 폴더 바깥</strong>의 파일을 읽거나 쓰려고 할 때의 동작입니다.
       작업 폴더 안의 파일은 이 정책과 무관하게 접근할 수 있습니다. 선택지는 세 가지입니다.
@@ -194,12 +194,14 @@ td:first-child{white-space:nowrap; font-weight:600}
   <table>
     <tr><th>항목</th><th>설명</th></tr>
     <tr><td>Your Plan</td><td>현재 계정에 적용된 라이선스를 표시합니다.
-      <strong>Gemini Enterprise Plus · Managed by your organization</strong>으로 표시되면 사내 라이선스가 정상 적용된 상태입니다.
-      "Managed by your organization"은 플랜을 개인이 아닌 <strong>조직(회사)이 관리</strong>한다는 뜻으로,
-      개인이 결제하거나 플랜을 바꿀 필요가 없습니다.</td></tr>
+      <strong>2026.09.17부터 사내 PoC는 Agent Platform</strong>(사용량 기반 과금) 라이선스를 사용하므로,
+      로그인 시 <code>Other</code> → 프로젝트 ID 입력 → <strong>Agent Platform</strong>을 선택했다면 그에 맞게 표시됩니다.
+      플랜은 조직이 관리하므로 개인이 결제하거나 바꿀 필요가 없습니다.</td></tr>
   </table>
   <div class="ok">개인 Gmail 계정으로 잘못 로그인하면 여기에 다른 플랜이 표시됩니다.
   로그인 직후 이 화면에서 플랜을 확인하는 것이 가장 확실한 점검 방법입니다.</div>
+  <div class="note"><b><code>Quota pool exhausted</code> 오류가 난다면</b>
+  예전 방식(Gemini Enterprise Plus)으로 로그인된 상태입니다. 로그아웃 후 <code>Other</code> → Agent Platform 경로로 다시 로그인하세요.</div>
 
   <h3>Model Quota — 모델 사용량</h3>
   <table>
