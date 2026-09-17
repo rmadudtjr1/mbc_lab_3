@@ -250,7 +250,6 @@ a.exlink::after{content:"↗"; font-size:.95em; opacity:.75}
   <a href="#s6">6. MCP와 주요 설정</a>
   <a class="lab-link" href="#lab6">실습 6 · 사내 MCP 연결</a>
   <a href="#wrapup">랩업 체크</a>
-  <a href="#next">4주차 해커톤 예고</a>
   <div class="grp">부록</div>
   <a href="#mcp-tools">사내 MCP 도구 명세</a>
   <a href="#trouble">문제 해결 (FAQ)</a>
@@ -915,7 +914,7 @@ a.exlink::after{content:"↗"; font-size:.95em; opacity:.75}
     <li>공시 조회 질문 1회 실행, 출처 문서 확인</li>
   </ul>
   <p><strong>개인 과제</strong>: 본인 업무에서 <strong>법령이나 기업 공시를 확인해야 했던 일</strong>을 하나 떠올려
-  질문으로 만들어보세요. 4주차 해커톤에서 쓸 만한 아이디어가 나올 수 있습니다.</p>
+  질문으로 만들어보세요.</p>
 </div>
 
 <section id="mcp-tools">
@@ -983,24 +982,9 @@ a.exlink::after{content:"↗"; font-size:.95em; opacity:.75}
   <ul>
     <li>오늘 만든 개인 과제 결과물을 <strong>실제 업무에 한 번 써보기</strong></li>
     <li><code>/learn</code>으로 저장한 규칙을 다음 주에 재사용해보기</li>
-    <li>잘 된 사례를 <strong>부서에 공유</strong> — 4주차 해커톤 주제 후보가 됩니다</li>
+    <li>잘 된 사례를 <strong>부서에 공유</strong>해보기</li>
   </ul>
 </section>
-
-<div class="lab" id="next">
-  <div class="lab-head"><h3>4주차 예고 · 미니 해커톤</h3>
-    <div class="lab-tags"><span class="tag time">4주차</span><span class="tag">조별 진행</span></div></div>
-  <ul>
-    <li><strong>형식</strong>: 1~3주차에 배운 도구를 활용해 MBC 업무 개선 결과물 1개를 완성하고,
-      조당 5분 발표(데모 3분 + 도구 선택 이유 2분)</li>
-    <li><strong>주제 풀(예시)</strong>: 시청자 의견 분류 · 선곡표→저작권 신고 자료 · 스포츠 속보 자막 ·
-      사내 공지 부서별 요약 · 녹취→기사 초안+팩트체크 — 자체 주제 환영</li>
-    <li><strong>심사</strong>: 도구 선택 적절성 40 / 실무 적용 가능성 40 / 완성도 20</li>
-  </ul>
-  <div class="note"><b>오늘 결과물을 버리지 마세요</b>
-  오늘 개인 과제로 만든 것이 해커톤 출품작의 출발점이 될 수 있습니다.
-  프로젝트 폴더를 그대로 두고, 무엇을 만들었는지 간단히 메모해두세요.</div>
-</div>
 
 <section id="trouble">
   <div class="eyebrow">부록</div>
@@ -1245,7 +1229,7 @@ document.querySelectorAll('pre').forEach(function(pre){
       elF.hidden = false;
       elF.className = 'quiz-feedback ' + (score >= 7 ? 'correct' : 'wrong');
       elF.innerHTML = (score === Q.length)
-        ? '<b>전부 정답입니다</b> — 4주차 해커톤 준비 완료.'
+        ? '<b>전부 정답입니다</b> — 완벽하게 이해하셨습니다.'
         : (score >= 7
           ? '<b>잘 하셨습니다</b> — 틀린 문항의 해설을 다시 한 번 읽어보세요.'
           : '<b>복습이 필요합니다</b> — 특히 로그인 절차(실습 1)와 아티팩트(3장)를 다시 확인하세요.');
